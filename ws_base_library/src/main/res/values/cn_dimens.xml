@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="cn_horizontal_margin">16dp</dimen>
+    <dimen name="cn_vertical_margin">12dp</dimen>
+
+    <dimen name="cn_vertical_margin_half">6dp</dimen>
+    <dimen name="cn_horizontal_margin_half">8dp</dimen>
+
+    <dimen name="cn_horizontal_margin_item">16dp</dimen>
+    <dimen name="cn_vertical_margin_item">4dp</dimen>
+
+    <dimen name="cn_btn_height">40dp</dimen>
+    <dimen name="cn_et_height">48dp</dimen>
+
+    <dimen name="cn_btn_vertical_margin">4dp</dimen>
+    <dimen name="cn_btn_horizontal_margin">8dp</dimen>
+
+    <dimen name="cn_text_size_common">14sp</dimen>
+    <dimen name="cn_text_size_small">12sp</dimen>
+    <dimen name="cn_text_size_big">16sp</dimen>
+
+    <dimen name="cn_text_size_biggest">18sp</dimen>
+
+    <dimen name="cn_input_corners_size">0dp</dimen>
+
+    <dimen name="cn_photo_view_width">72dp</dimen>
+    <dimen name="cn_photo_view_height">72dp</dimen>
+    <dimen name="cn_photo_view_padding_width">4dp</dimen>
+    <dimen name="cn_photo_view_padding_height">6dp</dimen>
+
+    <dimen name="cn_line_height">0.3dp</dimen>
+    <dimen name="cn_calendar_item_width">40dp</dimen>
+    <dimen name="cn_calendar_item_height">40dp</dimen>
+    <dimen name="cn_calendar_view_height">240dp</dimen>
+    <dimen name="cn_height50">50dp</dimen>
+
+    <dimen name="card_view">5dp</dimen>
+    <!-- Text size px -->
+    <dimen name="text_size_extra_ll">24sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_normal">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_std">12sp</dimen>
+    <dimen name="text_size_tiny">10sp</dimen>
+
+    <!-- SPACING -->
+    <dimen name="cn_len_quar">2dp</dimen>
+    <dimen name="cn_len_half">4dp</dimen>
+    <dimen name="cn_len_one">8dp</dimen>
+    <dimen name="cn_len_one_half">12dp</dimen>
+    <dimen name="cn_len_two_half">20dp</dimen>
+    <dimen name="cn_len_two">16dp</dimen>
+    <dimen name="cn_len_three">24dp</dimen>
+    <dimen name="cn_len_four">32dp</dimen>
+    <dimen name="cn_len_five">40dp</dimen>
+    <dimen name="cn_len_six">48dp</dimen>
+    <dimen name="cn_len_seven">56dp</dimen>
+    <dimen name="cn_len_eight">64dp</dimen>
+    <dimen name="cn_len_nine">72dp</dimen>
+    <dimen name="dp_6">6dp</dimen>
+    <dimen name="dp_28">28dp</dimen>
+
+</resources>

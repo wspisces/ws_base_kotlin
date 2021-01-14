@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<!--    <item android:state_pressed="true">-->
+
+<!--    </item>-->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="5dp"/>
+            <solid android:color="@color/cn_bg_light_grey"/>
+        </shape>
+    </item>
+    <item>
+        <ripple
+            android:color="@color/colorPrimaryDark"
+            tools:targetApi="lollipop">
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/colorPrimary" />
+                    <corners android:radius="5dp" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@color/colorPrimaryDark"
+    tools:targetApi="lollipop">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary" />
+            <corners android:radius="5dp" />
+        </shape>
+    </item>
+</ripple>-->
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+    <!--    <item android:state_pressed="true">-->
+    <!--        <shape android:shape="rectangle">-->
+    <!--            <corners android:radius="5dp"/>-->
+    <!--            <solid android:color="@color/colorPrimaryLight"/>-->
+    <!--        </shape>-->
+    <!--    </item>-->
+    <!--    <item android:state_enabled="false">-->
+    <!--        <shape android:shape="rectangle">-->
+    <!--            <corners android:radius="5dp"/>-->
+    <!--            <solid android:color="@color/cn_bg_light_grey"/>-->
+    <!--        </shape>-->
+    <!--    </item>-->
+    <!--    <item>-->
+    <!--        <shape android:shape="rectangle">-->
+    <!--            <corners android:radius="5dp"/>-->
+    <!--            <solid android:color="@color/colorPrimary"/>-->
+    <!--        </shape>-->
+    <!--    </item>-->
+    <!--</selector>-->

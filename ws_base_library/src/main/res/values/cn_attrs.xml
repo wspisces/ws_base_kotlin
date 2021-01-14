@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2014 pengjianbo(pengjianbosoft@gmail.com), Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing, software
+  ~  distributed under the License is distributed on an "AS IS" BASIS,
+  ~  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~  See the License for the specific language governing permissions and
+  ~  limitations under the License.
+  -->
+
+<resources>
+    <!--<attr name="colorTheme" format="reference|color"/>-->
+    <!--<attr name="colorThemeDark" format="reference|color"/>-->
+
+    <declare-styleable name="PullLoadMoreRecyclerView">
+        <attr name="noDataIcon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="GFFloatingActionButton">
+        <attr name="fabColorPressed" format="color"/>
+        <attr name="fabColorNormal" format="color"/>
+        <attr name="fabIcon" format="reference"/>
+        <attr name="fabTitle" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalListView">
+        <attr name="dividerWidth" format="dimension" />
+        <attr name="android:divider" />
+        <attr name="android:requiresFadingEdge" />
+        <attr name="android:fadingEdgeLength" />
+    </declare-styleable>
+
+    <declare-styleable name="LimitHeightRecyclerView">
+        <!--声明我们的属性，名称为default_size,取值类型为尺寸类型（dp,px等）-->
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CnCircleView">
+        <attr name="ccv_circle_color" format="color" />
+        <attr name="ccv_circle_radius" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CnLineView">
+        <attr name="clv_color" format="color" />
+        <attr name="clv_width" format="dimension" />
+        <attr name="clv_gravity">
+            <flag name="top" value="0" />
+            <flag name="middle" value="1" />
+            <flag name="bottom" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="MenuView">
+        <attr name="menuCode" format="string"/>
+        <attr name="menuName" format="string"/>
+        <attr name="menu_control_view_by_code_in_db" format="boolean"/>
+        <attr name="menu_control_menu_in_db" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="CnMenuSelectView">
+        <attr name="cmsv_menu_text_color" format="color"/>
+        <attr name="cmsv_menu_text_name" format="string"/>
+        <attr name="cmsv_menu_img_src" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="PhotoLayoutView">
+
+        <attr name="plv_width" format="dimension"/>
+
+        <attr name="plv_photo_padding_width" format="dimension"/>
+
+        <attr name="plv_photo_padding_height" format="dimension"/>
+
+        <attr name="plv_max_image_size" format="integer"/>
+
+        <attr name="plv_need_select" format="boolean"/>
+
+        <attr name="plv_need_delete" format="boolean"/>
+
+        <attr name="plv_row_count" format="integer"/>
+
+        <!-- 在展示的状态下，获取此属性，当时web端的图片时可下载 -->
+        <attr name="plv_is_download" format="boolean"/>
+
+        <!-- 在拍照状态下是否需要水印 -->
+        <attr name="plv_is_need_watermark" format="boolean"/>
+
+        <attr name="plv_show_model">
+            <flag name="PHOTO_SHOW_MODEL_SHOW" value="0"/>
+            <flag name="PHOTO_SHOW_MODEL_ADD" value="1"/>
+        </attr>
+
+        <attr name="plv_select_model">
+            <flag name="PHOTO_SHOW_MODEL_PIC_TAKE" value="0"/>
+            <flag name="PHOTO_SHOW_MODEL_PIC" value="1"/>
+            <flag name="PHOTO_SHOW_MODEL_TAKE" value="2"/>
+        </attr>
+
+        <attr name="plv_gravity">
+            <flag name="left" value="0" />
+            <flag name="right" value="1" />
+            <flag name="balance" value="4" />
+        </attr>
+    </declare-styleable>
+    <attr name="cbd_calendar_row" format="integer"/>
+
+    <declare-styleable name="CalendarDateView">
+        <attr name="cbd_calendar_row"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 透明度颜色值
+    	00%-00 05%-0D 10%-1A 15%-26 20%-33 25%-40 30%-4D 35%-59 40%-66 45%-73 50%-80
+    	55%-8C 60%-99 65%-A6 70%-B3 75%-BF 80%-CC 85%-D9 90%-E6 95%-F2 100%-FF -->
+    <color name="colorPrimary">#5CADFF</color>
+    <color name="colorPrimaryLight">#4D5CADFF</color>
+    <color name="colorPrimaryDark">#2c8ddc</color>
+    <color name="colorAccent">#333333</color>
+    <color name="alert">#FF9800</color>
+    <color name="alertDark">#F57C00</color>
+    <color name="alertLight">#FFE0B2</color>
+    <color name="gray">#4F4F5D</color>
+    <color name="grayLight">#4D4F4F5D</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent_black">#B3000000</color>
+    <color name="transparent_white">#40ffffff</color>
+    <color name="trans_white">#B3ffffff</color>
+
+    <color name="cn_line_color">#F8F4F4</color>
+
+    <color name="common_edit_border_color">#000000</color>
+
+    <color name="cn_bg_default_color">#FFF4F4F4</color>
+
+    <color name="text_color_common">@color/text_color_333</color>
+    <color name="text_color_414">#41414E</color>
+    <color name="text_color_222">#222222</color>
+    <color name="text_color_333">#333333</color>
+    <color name="text_color_444">#444444</color>
+    <color name="text_color_555">#555555</color>
+    <color name="text_color_666">#666666</color>
+    <color name="text_color_777">#777777</color>
+    <color name="text_color_80">#808080</color>
+    <color name="text_color_888">#888888</color>
+    <color name="text_color_999">#999999</color>
+    <color name="text_color_c2">#c2c2c2</color>
+    <color name="theme_color">@color/colorPrimary</color>
+    <color name="theme_70_color">#B315A0F5</color>
+
+    <color name="cn_btn_common_gray_color">@color/text_color_999</color>
+    <color name="cn_btn_common_color">@color/theme_color</color>
+    <color name="cn_btn_common_light_color">@color/theme_70_color</color>
+
+    <color name="cn_negative_color">#ED3C6E</color>
+    <color name="cn_negative_light_color">#FFEC537E</color>
+
+    <color name="red">#FF0000</color>  <!-- 红色 -->
+    <color name="blue">#5C9DF5</color> <!-- 蓝色 -->
+    <color name="green">#70cca4</color> <!-- 绿色 -->
+    <color name="cyan">#00FF00</color> <!-- 青色 -->
+    <color name="yellow">#FFFF00</color> <!-- 黄色 -->
+
+    <color name="dialog_bg_color">#1A000000</color>
+
+    <color name="cover_color">#66000000</color>
+
+    <color name="cover_color_light">#40000000</color>
+
+    <color name="cn_actionbar_text_color">@color/white</color>
+    <color name="cn_actionbar_menu_text_color">@color/white</color>
+    <color name="cn_actionbar_bg_color">@color/theme_color</color>
+
+    <color name="cn_dialog_title_tv_color">@color/white</color>
+    <color name="cn_dialog_title_btn_color">@color/blue</color>
+    <color name="grey">#EFEFEF</color>
+    <color name="grey_trans">#1AEFEFEF</color>
+    <color name="common_layout">#F0F1F5</color>
+    <!--选中的颜色-->
+    <color name="item_check_color">#ffffffff</color>
+    <!--未选中的颜色-->
+    <color name="item_uncheck_color">#ff333333</color>
+    <!--不是当月的颜色-->
+    <color name="item_unnowmonth_color">#ff9299a1</color>
+
+    <color name="nocolor">#00000000</color>
+
+    <color name="cn_popup_item_select_bg_color">#F5FFE8</color>
+    <color name="cn_popup_item_common_bg_color">@color/white</color>
+    <color name="cn_popup_item_select_text_color">@color/text_color_333</color>
+    <color name="cn_popup_item_common_text_color">@color/text_color_333</color>
+    <color name="cn_popup_line_color">@color/cn_line_color</color>
+
+    <color name="cn_bg_light_grey2">#efefef</color>
+    <color name="cn_bg_light_grey">#DBDBDB</color>
+    <color name="cn_bg_grey">#999999</color>
+
+    <color name="color_grey_f6f4f4">#F6F4F4</color>
+</resources>

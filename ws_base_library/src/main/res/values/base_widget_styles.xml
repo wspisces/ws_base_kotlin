@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Layout_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="background">@color/cn_bg_default_color</item>
+    </style>
+
+    <style name="Layout_View_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="background">@color/transparent</item>
+    </style>
+
+    <style name="Layout_Card_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="background">@color/white</item>
+        <item name="android:paddingTop">@dimen/cn_vertical_margin</item>
+        <item name="android:paddingBottom">@dimen/cn_vertical_margin</item>
+        <item name="android:paddingLeft">@dimen/cn_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/cn_horizontal_margin</item>
+    </style>
+
+    <style name="Line_Horizontal_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/cn_line_height</item>
+        <item name="background">@color/cn_line_color</item>
+    </style>
+
+    <style name="Line_Vertical_Standard">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/cn_line_height</item>
+        <item name="background">@color/cn_line_color</item>
+    </style>
+
+    <style name="Layout_Card_Standard_">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="background">@color/white</item>
+        <item name="android:paddingTop">@dimen/cn_vertical_margin_half</item>
+        <item name="android:paddingBottom">@dimen/cn_vertical_margin_half</item>
+        <item name="android:paddingLeft">@dimen/cn_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/cn_horizontal_margin</item>
+    </style>
+
+    <style name="TextView_Standard">
+        <item name="android:textColor">@color/text_color_common</item>
+        <item name="android:textSize">@dimen/cn_text_size_common</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Button_Standard_Short">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/cn_btn_height</item>
+        <item name="android:textSize">@dimen/cn_text_size_common</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="background">@drawable/btn_selector_common</item>
+        <item name="android:paddingLeft">@dimen/cn_btn_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/cn_btn_horizontal_margin</item>
+    </style>
+
+    <style name="Button_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/cn_btn_height</item>
+        <item name="android:textSize">@dimen/cn_text_size_common</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">@dimen/cn_btn_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/cn_btn_horizontal_margin</item>
+        <item name="background">@drawable/btn_selector_common</item>
+    </style>
+
+    <style name="Button_Standard_Short_negative" parent="Button_Standard_Short">
+        <item name="android:textColor">@color/theme_color</item>
+        <item name="background">@drawable/btn_selector_negative</item>
+    </style>
+
+    <style name="Button_Standard_negative" parent="Button_Standard">
+        <item name="android:textColor">@color/theme_color</item>
+        <item name="background">@drawable/btn_selector_common</item>
+    </style>
+
+    <style name="EditText_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:textSize">@dimen/cn_text_size_common</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:hint">请输入关键字</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:maxLength">100</item>
+        <item name="android:textColor">@color/text_color_333</item>
+        <item name="android:textColorHint">@color/text_color_999</item>
+        <item name="background">@android:color/white</item>
+    </style>
+
+    <style name="EditText_Standard.SingleLine">
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">left|top</item>
+    </style>
+
+    <style name="ListView_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:cacheColorHint">@color/transparent</item>
+        <item name="divider">@color/transparent</item>
+        <item name="android:listSelector">@color/transparent</item>
+        <item name="background">@color/transparent</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="Line_Horizontal_Standard.LineView">
+        <item name="android:paddingLeft">@dimen/cn_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/cn_horizontal_margin</item>
+        <item name="background">@color/white</item>
+    </style>
+
+    <style name="PhotoLayoutView_Standard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/cn_horizontal_margin</item>
+        <item name="android:paddingRight">@dimen/cn_horizontal_margin</item>
+        <item name="android:paddingTop">@dimen/cn_vertical_margin_half</item>
+        <item name="android:paddingBottom">@dimen/cn_vertical_margin_half</item>
+    </style>
+    <!-- Toolbar风格 在activity_base布局中使用 -->
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="searchViewStyle">@style/Widget.SearchView</item>
+        <item name="editTextColor">@android:color/white</item>
+    </style>
+    <!-- SearchView风格 -->
+    <style name="Widget.SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="defaultQueryHint">"输入车牌号"</item>
+        <item name="goIcon">@mipmap/ic_search_white_24dp</item>
+        <!-- <item name="searchIcon">@mipmap/ic_common_calendar_filter</item> -->
+        <!-- <item name="searchHintIcon">@mipmap/ic_common_calendar_filter</item> -->
+    </style>
+
+</resources>

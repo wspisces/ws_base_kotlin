@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="input" format="integer" />
+    <attr name="pwd" format="boolean" />
+    <attr name="content" format="string" />
+    <attr name="hint" format="string" />
+    <attr name="style" format="integer" />
+    <attr name="maxlengh" format="integer" />
+    <attr name="minlengh" format="integer" />
+    <attr name="icon" format="reference" />
+    <attr name="title" format="string" />
+    <attr name="bgColor" format="color" />
+    <attr name="fgColor" format="color" />
+    <attr name="percent" format="float" />
+    <attr name="startAngle" format="float" />
+    <declare-styleable name="FormRowWithImage">
+        <attr name="title" />
+        <attr name="style" />
+        <attr name="hint" />
+        <attr name="maxlengh" />
+        <attr name="pwd" />
+        <attr name="leading" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="EmptyView">
+        <attr name="msg" format="string" />
+        <attr name="icon" />
+    </declare-styleable>
+    <declare-styleable name="FormRow">
+        <attr name="title" />
+        <attr name="style" />
+        <attr name="hint" />
+        <attr name="maxlengh" />
+        <attr name="pwd" />
+        <attr name="input" />
+    </declare-styleable>
+    <declare-styleable name="FormColum">
+        <attr name="title" />
+        <attr name="style" />
+        <attr name="hint" />
+        <attr name="content" />
+        <attr name="maxlengh" />
+    </declare-styleable>
+    <declare-styleable name="MenuRow">
+        <attr name="title" />
+        <attr name="icon" />
+    </declare-styleable>
+    <declare-styleable name="MenuColumn">
+        <attr name="title" />
+        <attr name="icon" />
+    </declare-styleable>
+    <declare-styleable name="MenuTemperature">
+        <attr name="title" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ColorfulRingProgressView">
+        <attr name="bgColor" />
+        <attr name="fgColor" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="percent" />
+        <attr name="startAngle" />
+    </declare-styleable>
+</resources>

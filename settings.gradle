@@ -1,0 +1,6 @@
+include ':filepickeronlyfile'
+include ':filepicker'
+include ':WheelPicker'
+include ':ws_base_library'
+include ':app'
+rootProject.name = "BaseLibrary"
