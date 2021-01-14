@@ -1,5 +1,6 @@
 package com.ws.support.utils
 
+import android.text.TextUtils
 import android.util.Log
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
@@ -7,6 +8,14 @@ import java.lang.reflect.Type
 import java.util.*
 
 object JsonUtils {
+
+    fun isNotEmpty(mObject: Any?): Boolean {
+        return !(mObject == null || TextUtils.equals(mObject.toString(), "null")
+                || TextUtils.equals(mObject.toString(), "[]")
+                || TextUtils.equals(mObject.toString(), "{}")
+                || TextUtils.equals(mObject.toString(), ""))
+    }
+
     private const val TAG = "JsonUtils"
     const val EMPTY = ""
 
@@ -64,9 +73,11 @@ object JsonUtils {
      */
     @JvmName("toJson1")
     @JvmOverloads
-    fun toJson(target: Any?, targetType: Type? = null,
-               isSerializeNulls: Boolean = false, version: Double? = null, datePattern: String? = null,
-               excludesFieldsWithoutExpose: Boolean = true): String {
+    fun toJson(
+            target: Any?, targetType: Type? = null,
+            isSerializeNulls: Boolean = false, version: Double? = null, datePattern: String? = null,
+            excludesFieldsWithoutExpose: Boolean = true,
+    ): String {
         var datePattern = datePattern
         if (target == null) return EMPTY_JSON
         val builder = GsonBuilder()
@@ -157,8 +168,10 @@ object JsonUtils {
      * 是否排除未标注 @Expose 注解的字段。
      * @return 目标对象的 `JSON` 格式的字符串。
      */
-    fun toJson(target: Any?,
-               excludesFieldsWithoutExpose: Boolean): String {
+    fun toJson(
+            target: Any?,
+            excludesFieldsWithoutExpose: Boolean,
+    ): String {
         return toJson(target, null, false, null, null,
                 excludesFieldsWithoutExpose)
     }
@@ -179,8 +192,10 @@ object JsonUtils {
      * 是否排除未标注 @Expose 注解的字段。
      * @return 目标对象的 `JSON` 格式的字符串。
      */
-    fun toJson(target: Any?, version: Double?,
-               excludesFieldsWithoutExpose: Boolean): String {
+    fun toJson(
+            target: Any?, version: Double?,
+            excludesFieldsWithoutExpose: Boolean,
+    ): String {
         return toJson(target, null, false, version, null,
                 excludesFieldsWithoutExpose)
     }
@@ -242,8 +257,10 @@ object JsonUtils {
      * 是否排除未标注 @Expose 注解的字段。
      * @return 目标对象的 `JSON` 格式的字符串。
      */
-    fun toJson(target: Any?, targetType: Type?,
-               excludesFieldsWithoutExpose: Boolean): String {
+    fun toJson(
+            target: Any?, targetType: Type?,
+            excludesFieldsWithoutExpose: Boolean,
+    ): String {
         return toJson(target, targetType, false, null, null,
                 excludesFieldsWithoutExpose)
     }
@@ -265,8 +282,10 @@ object JsonUtils {
      * 是否排除未标注 @Expose 注解的字段。
      * @return 目标对象的 `JSON` 格式的字符串。
      */
-    fun toJson(target: Any?, targetType: Type?, version: Double?,
-               excludesFieldsWithoutExpose: Boolean): String {
+    fun toJson(
+            target: Any?, targetType: Type?, version: Double?,
+            excludesFieldsWithoutExpose: Boolean,
+    ): String {
         return toJson(target, targetType, false, version, null,
                 excludesFieldsWithoutExpose)
     }
@@ -284,8 +303,10 @@ object JsonUtils {
      * 日期格式模式。
      * @return 给定的 `JSON` 字符串表示的指定的类型对象。
     </T> */
-    fun <T> fromJson(json: String, token: TypeToken<T>,
-                     datePattern: String? = null): T? {
+    fun <T> fromJson(
+            json: String, token: TypeToken<T>,
+            datePattern: String? = null,
+    ): T? {
         var datePattern = datePattern
         if (isEmpty(json)) {
             return null

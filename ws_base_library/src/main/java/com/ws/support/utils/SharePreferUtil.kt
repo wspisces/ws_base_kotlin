@@ -227,6 +227,15 @@ object SharePreferUtil {
         return getSharedPreferences().getBoolean(ISVERIFY, false)
     }
 
+    const val IS_PORTRAIT = "isPortrait"
+    fun saveScreenOrientation(isPortrait: Boolean) {
+        getEditor().putBoolean(IS_PORTRAIT, isPortrait).commit()
+    }
+
+    fun getScreenOrientation(): Boolean {
+        return getSharedPreferences().getBoolean(IS_PORTRAIT, false)
+    }
+
     //清理缓存数据
     fun ClearCache() {
         savePhone("")

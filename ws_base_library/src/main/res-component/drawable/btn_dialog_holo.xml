@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <stroke android:width="1px" android:color="@color/grey" />
+            <solid android:color="@color/grey" />
+        </shape>
+    </item>
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <stroke android:width="1px" android:color="@color/grey" />
+            <solid android:color="@color/grey" />
+        </shape>
+    </item>
+    <item>
+        <ripple android:color="@color/gray" tools:targetApi="lollipop">
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/white" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</selector>

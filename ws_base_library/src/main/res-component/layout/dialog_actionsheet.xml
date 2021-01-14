@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_corner_9"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cn_btn_height"
+                style="@style/btnPrimary"
+                android:text="取消"
+                android:layout_marginTop="@dimen/cn_len_one"
+                android:layout_marginStart="@dimen/cn_len_two"
+                android:layout_marginEnd="@dimen/cn_len_two"
+                android:layout_marginBottom="@dimen/cn_len_two"
+                />
+        </LinearLayout>
+        >
+    </ScrollView>
+</FrameLayout>

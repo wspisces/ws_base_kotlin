@@ -197,7 +197,7 @@ class AppUtils private constructor() {
             return getMetaData(context, channelKey)
         }
 
-        fun getPackageUid(context: Context, packageName: String?): Int {
+        fun getPackageUid(context: Context, packageName: String): Int {
             val packageManager = context.packageManager
             var uid = -1
             try {

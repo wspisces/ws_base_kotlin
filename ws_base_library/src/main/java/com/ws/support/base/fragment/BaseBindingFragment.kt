@@ -1,39 +1,54 @@
 package com.ws.support.base.fragment
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.ws.support.utils.ToastUtils
+import com.ws.support.utils.ToastUtils.normal
 import com.ws.support.widget.MyProgressDialogFragment
+import com.ws.support.widget.MyProgressDialogFragment.Companion.newInstance
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 
 /**
- * Fragment基础类
+ * 描述信息
  *
- * @author Johnny.xu
- * date 2017/2/16
+ * @author ws
+ * @date 12/23/20 2:30 PM
+ * 修改人：ws
  */
-abstract class BaseFragment : Fragment() {
-    protected var mContext: Context? = null
+abstract class BaseBindingFragment<DB : ViewDataBinding?> : Fragment() {
+    protected lateinit var mContext: Context
     private var mDialog: MyProgressDialogFragment? = null
-    protected abstract fun tag(): String?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mContext = activity!!
+        val db: DB = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        initView(db)
+        return db!!.root
+    }
 
     /**
-     * 执行该方法时，Fragment与Activity已经完成绑定，该方法有一个Activity类型的参数，
-     * 代表绑定的Activity，这时候你可以执行诸如mActivity = activity的操作。
+     * 获取资源ID
+     *
+     * @return 布局资源ID
      */
-    override fun onAttach(activity: Activity) {
-        super.onAttach(activity)
-        mContext = activity
+    protected abstract val layoutId: Int
 
-    }
+    /**
+     * 初始化界面
+     *
+     * @param bindView 界面绑定对象
+     */
+    protected abstract fun initView(bindView: DB)
+    protected abstract fun tag(): String?
 
     /**
      * 初始化Fragment。可通过参数savedInstanceState获取之前保存的值。
@@ -46,13 +61,13 @@ abstract class BaseFragment : Fragment() {
     /**
      * 公用组件：进度条
      */
-    protected fun initProgress(msg: String) {
+    protected fun initProgress(msg: String?) {
         try {
             if (null == mDialog) {
-                mDialog = MyProgressDialogFragment.Companion.newInstance(msg)
+                mDialog = newInstance(msg)
                 mDialog!!.isCancelable = true
             }
-            mDialog!!.setMessage(msg)
+            mDialog!!.setMessage(msg!!)
             mDialog!!.show(fragmentManager)
         } catch (ignored: Exception) {
         }
@@ -75,7 +90,7 @@ abstract class BaseFragment : Fragment() {
         if (TextUtils.isEmpty(message)) {
             return
         }
-        ToastUtils.normal(message)
+        normal(message)
     }
 
     //跳转
@@ -107,7 +122,6 @@ abstract class BaseFragment : Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe { aLong: Long? -> view.isEnabled = true }
-        //new Handler().postDelayed(() -> view.setEnabled(true), delay);
     }
 
     companion object {
