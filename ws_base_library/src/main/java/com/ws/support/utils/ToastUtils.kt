@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.ws.support.utils
 
 import android.annotation.SuppressLint
@@ -85,67 +87,62 @@ object ToastUtils {
     //    enum ToatType {
     //        Normal, Info, Warning, Success, Error
     //    }
-    var toast: Toast? = null
+    lateinit var toast: Toast
 
     @SuppressLint("HandlerLeak")
     private val handler: Handler = object : Handler() {
         override fun dispatchMessage(msg: Message) {
             super.dispatchMessage(msg)
-            if (toast != null) {
-                toast!!.cancel()
-            }
+            toast.cancel()
         }
     }
 
     //显示短时间toast
-    fun warn(msg: String?) {
-        Toasty.warning(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_SHORT, true).show()
+    fun warn(msg: String) {
+        Toasty.warning(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT, true).show()
     }
 
-    fun warnL(msg: String?) {
-        Toasty.warning(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_LONG, true).show()
+    fun warnL(msg: String) {
+        Toasty.warning(BaseApplication.getInstance(), msg, Toasty.LENGTH_LONG, true).show()
     }
 
     //显示短时间toast
-    fun error(msg: String?) {
-        Toasty.error(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_SHORT, true).show()
+    fun error(msg: String) {
+        Toasty.error(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT, true).show()
     }
 
-    fun errorL(msg: String?) {
-        Toasty.error(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_LONG, true).show()
+    fun errorL(msg: String) {
+        Toasty.error(BaseApplication.getInstance(), msg, Toasty.LENGTH_LONG, true).show()
     }
 
-    fun success(msg: String?) {
-        Toasty.success(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_SHORT, true).show()
+    fun success(msg: String) {
+        Toasty.success(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT, true).show()
     }
 
-    fun successL(msg: String?) {
-        Toasty.success(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_LONG, true).show()
+    fun successL(msg: String) {
+        Toasty.success(BaseApplication.getInstance(), msg, Toasty.LENGTH_LONG, true).show()
     }
 
-    fun info(msg: String?) {
-        Toasty.info(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_SHORT, true).show()
+    fun info(msg: String) {
+        Toasty.info(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT, true).show()
     }
 
-    fun infoL(msg: String?) {
-        Toasty.info(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_LONG, true).show()
+    fun infoL(msg: String) {
+        Toasty.info(BaseApplication.getInstance(), msg, Toasty.LENGTH_LONG, true).show()
     }
 
-    fun normal(msg: String?) {
-        Toasty.normal(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_SHORT).show()
+    fun normal(msg: String) {
+        Toasty.normal(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT).show()
     }
 
-    fun normalL(msg: String?) {
-        Toasty.normal(BaseApplication.Companion.getInstance()!!, msg!!, Toasty.LENGTH_LONG).show()
+    fun normalL(msg: String) {
+        Toasty.normal(BaseApplication.getInstance(), msg, Toasty.LENGTH_LONG).show()
     }
 
     @SuppressLint("ShowToast")
-    fun shortT(msg: String?) {
-        if (toast == null) {
-            toast = Toast.makeText(BaseApplication.Companion.getInstance(), msg, Toast.LENGTH_SHORT)
-        }
-        toast!!.setText(msg)
-        toast!!.show()
+    fun shortT(msg: String) {
+        toast.setText(msg)
+        toast.show()
         handler.removeMessages(0)
         handler.sendEmptyMessageDelayed(0, 200)
     }

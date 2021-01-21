@@ -6,31 +6,13 @@ import android.content.Context
 import android.content.Intent
 import android.os.Environment
 import com.orhanobut.logger.Logger
-import com.ws.base.BuildConfig
-import com.ws.support.http.BaseObserver
-import com.ws.support.http.HttpHelper
-import com.ws.support.http.HttpHelper.createService
-import com.ws.support.http.ResultTO
-import com.ws.support.http._ApiUrl
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
-import org.greenrobot.eventbus.EventBus
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
-import java.util.concurrent.TimeUnit
 
 /**
  * 版本验证服务,升级
  *
  * @author ws
  */
+@Suppress("DEPRECATION")
 class VersionCheckService : IntentService("VersionCheckService") {
     var type = 0
     @SuppressLint("WrongConstant")

@@ -94,7 +94,7 @@ class WebSocketManager private constructor() {
      * @param text 字符串
      * @return boolean
      */
-    fun sendMessage(text: String?): Boolean {
+    fun sendMessage(text: String): Boolean {
         return if (!isConnect()) false else mWebSocket!!.send(text)
     }
 
@@ -104,7 +104,7 @@ class WebSocketManager private constructor() {
      * @param byteString 字符集
      * @return boolean
      */
-    fun sendMessage(byteString: ByteString?): Boolean {
+    fun sendMessage(byteString: ByteString): Boolean {
         return if (!isConnect()) false else mWebSocket!!.send(byteString)
     }
 

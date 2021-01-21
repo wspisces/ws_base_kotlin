@@ -19,14 +19,14 @@ object DataCleanManager {
      * @return
      * @throws Exception
      */
-    @kotlin.Throws(Exception::class)
-    fun getTotalCacheSize(context: Context): String {
-        var cacheSize = getFolderSize(context.cacheDir)
-        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-            cacheSize += getFolderSize(context.externalCacheDir)
-        }
-        return getFormatSize(cacheSize.toDouble())
-    }
+//    @kotlin.Throws(Exception::class)
+//    fun getTotalCacheSize(context: Context): String {
+//        var cacheSize = getFolderSize(context.cacheDir)
+//        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+//            cacheSize += getFolderSize(context.externalCacheDir)
+//        }
+//        return getFormatSize(cacheSize.toDouble())
+//    }
 
     /**
      * 清除缓存
@@ -58,10 +58,10 @@ object DataCleanManager {
     //getCacheDir()方法用于获取/data/data//cache目录
     //getFilesDir()方法用于获取/data/data//files目录
     @kotlin.Throws(Exception::class)
-    fun getFolderSize(file: File?): Long {
+    fun getFolderSize(file: File): Long {
         var size: Long = 0
         try {
-            val fileList = file!!.listFiles()
+            val fileList = file.listFiles()
             for (i in fileList.indices) {
                 // 如果下面还有文件
                 size = if (fileList[i].isDirectory) {

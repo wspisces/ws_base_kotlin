@@ -1,3 +1,5 @@
+@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
 package com.ws.support.utils
 
 import android.content.Context
@@ -144,7 +146,7 @@ object MyFileUtils {
      */
     fun mkDir(dir: String?): File? {
         if (isSDCARDMounted()) {
-            var file: File? = null
+            val file: File?
             try {
                 file = File(dir)
                 if (!file.exists()) {

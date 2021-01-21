@@ -90,7 +90,7 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
              */
             val DEFAULT: Logger = object : Logger {
                 override fun log(message: String?) {
-                    Log.e("reuest", message)
+                    Log.e("request", message + "")
                 }
             }
         }
@@ -120,7 +120,7 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
         val logHeaders = logBody || level == Level.HEADERS
         val requestBody = request.body()
         val hasRequestBody = requestBody != null
-        val connection = chain.connection()
+        //val connection = chain.connection()
         //        Protocol protocol = connection != null ? connection.getProtocol() : Protocol.HTTP_1_1;
         val requestStartMessage = StringBuilder()
         requestStartMessage.append("--> " + request.method() + ' ' + request.url() + ' ') //+ protocol(protocol)
@@ -188,7 +188,7 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
             } else {
                 val source = responseBody!!.source()
                 source.request(Long.MAX_VALUE) // Buffer the entire body.
-                val buffer = source.buffer()
+                val buffer = source.buffer
                 var charset = UTF8
                 val contentType = responseBody.contentType()
                 if (contentType != null) {
@@ -198,7 +198,8 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
                     logger.log("")
                     logger.log(buffer.clone().readString(charset!!))
                 }
-                logger.log("<-- END HTTP (" + buffer.size + BYTE_BODY)
+                //logger.log("<-- END HTTP ${buffer.size()} $BYTE_BODY")
+                logger.log("<-- END HTTP $BYTE_BODY")
             }
         }
         return response

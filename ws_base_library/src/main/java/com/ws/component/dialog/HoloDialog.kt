@@ -25,6 +25,7 @@ import com.ws.support.utils.ToastUtils.warn
  * @date 12/21/20 7:11 PM
  * 修改人：ws
  */
+@Suppress("NAME_SHADOWING")
 class HoloDialog(private val context: Context) {
     var listener: OnHoloDialogClickListener? = null
     var listener2: OnHoloDialogClickListener2? = null
@@ -46,11 +47,11 @@ class HoloDialog(private val context: Context) {
         tvMessage = view.findViewById(R.id.tv_message)
         tvCancel = view.findViewById(R.id.tv_cancel)
         tvOk = view.findViewById(R.id.tv_ok)
-        tvCancel.setOnClickListener({ view1: View? ->
-            if (listener != null) listener!!.onCancelClick()
+        tvCancel.setOnClickListener {
+            listener?.onCancelClick()
             dialog.dismiss()
-        })
-        tvOk.setOnClickListener({ view12: View? -> if (listener != null) listener!!.onOKClick(dialog) })
+        }
+        tvOk.setOnClickListener { listener?.onOKClick(dialog) }
         val dialogWindow = dialog.window
         dialogWindow?.setGravity(Gravity.CENTER)
         val lp = dialogWindow?.attributes
@@ -73,12 +74,12 @@ class HoloDialog(private val context: Context) {
         tvOk = view.findViewById(R.id.tv_ok)
         etName = view.findViewById(R.id.et_name)
         etAmount = view.findViewById(R.id.et_amount)
-        etAmount.setFilters(arrayOf<InputFilter>(InputFilterFloatMinMax(0.01.toFloat(), 9999f)))
-        tvCancel.setOnClickListener(View.OnClickListener { view1: View? ->
-            if (listener2 != null) listener2!!.onCancelClick()
+        etAmount.filters = arrayOf<InputFilter>(InputFilterFloatMinMax(0.01.toFloat(), 9999f))
+        tvCancel.setOnClickListener {
+            listener2?.onCancelClick()
             dialog.dismiss()
-        })
-        tvOk.setOnClickListener({ view12: View? ->
+        }
+        tvOk.setOnClickListener {
             if (etName.text?.length == 0) {
                 warn("请输入菜名")
                 return@setOnClickListener
@@ -87,8 +88,8 @@ class HoloDialog(private val context: Context) {
                 warn("请输入金额")
                 return@setOnClickListener
             }
-            if (listener2 != null) listener2!!.onOKClick(dialog, etName.getText().toString(), etAmount.getText().toString())
-        })
+            listener2?.onOKClick(dialog, etName.text.toString(), etAmount.text.toString())
+        }
         // 定义Dialog布局和参数
         dialog = Dialog(context, R.style.HoloDialogStyle)
         dialog.setContentView(view)
@@ -224,8 +225,8 @@ class HoloDialog(private val context: Context) {
      */
     private fun setRegion(edit: EditText, MIN_MARK: Float, MAX_MARK: Float) {
         edit.addTextChangedListener(object : TextWatcher {
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                var s = s
+            override fun onTextChanged(str: CharSequence, start: Int, before: Int, count: Int) {
+                var s = str
                 if (start > 1) {
                     if (MIN_MARK != -1f && MAX_MARK != -1f) {
                         val num = s.toString().toDouble()
@@ -243,9 +244,9 @@ class HoloDialog(private val context: Context) {
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun afterTextChanged(s: Editable) {
-                if (s != null && s.length > 0) {
+                if (s.isNotEmpty()) {
                     if (MIN_MARK != -1f && MAX_MARK != -1f) {
-                        var markVal = 0.0
+                        val markVal: Double
                         markVal = try {
                             s.toString().toDouble()
                         } catch (e: NumberFormatException) {

@@ -10,6 +10,7 @@ import java.io.*
  *
  * @author zhy
  */
+@Suppress("DEPRECATION")
 class SDCardUtils private constructor() {
     companion object {
         /**
@@ -98,9 +99,9 @@ class SDCardUtils private constructor() {
          *
          * @return 容量字节 SDCard可用空间，内部存储可用空间
          */
-        fun getFreeBytes(filePath: String): Long {
+        fun getFreeBytes(path: String): Long {
             // 如果是sd卡的下的路径，则获取sd卡可用容量
-            var filePath = filePath
+            var filePath = path
             filePath = if (filePath.startsWith(getSDCardPath())) {
                 getSDCardPath()
             } else { // 如果是内部存储的路径，则获取内存存储的可用容量

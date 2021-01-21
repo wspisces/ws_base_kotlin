@@ -1,5 +1,8 @@
+@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
 package com.ws.support.http
 
+import android.annotation.SuppressLint
 import com.orhanobut.logger.Logger
 import com.ws.support.utils.SharePreferUtil
 import io.reactivex.plugins.RxJavaPlugins
@@ -12,10 +15,12 @@ import javax.net.ssl.X509TrustManager
 
 object OkHttpUtil {
     val trustAllCert: X509TrustManager = object : X509TrustManager {
+        @SuppressLint("TrustAllX509TrustManager")
         @kotlin.Throws(CertificateException::class)
         override fun checkClientTrusted(chain: Array<X509Certificate>, authType: String) {
         }
 
+        @SuppressLint("TrustAllX509TrustManager")
         @kotlin.Throws(CertificateException::class)
         override fun checkServerTrusted(chain: Array<X509Certificate>, authType: String) {
         }
@@ -45,7 +50,7 @@ object OkHttpUtil {
                             .newBuilder()
                             .addHeader("Content-Type", "application/json")
                             .addHeader("Accept", "*/*")
-                            .addHeader("Authorization", token) //.addHeader(".AspNetCore.Culture",SharePreferUtil.getLanguage(BaseApplication.getInstance()))
+                            .addHeader("Authorization", token)
                             .build()
                     chain.proceed(request)
                 } //               .sslSocketFactory(new SSLSocketFactoryCompat(trustAllCert), trustAllCert)

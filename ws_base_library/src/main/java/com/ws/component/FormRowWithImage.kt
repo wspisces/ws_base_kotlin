@@ -61,7 +61,7 @@ class FormRowWithImage : ConstraintLayout {
         tvTitle = mView.findViewById(R.id.tv_title)
         etContent = mView.findViewById(R.id.et_content)
         btnAction = mView.findViewById(R.id.btn_action)
-        btnAction.setOnClickListener { view: View? ->
+        btnAction.setOnClickListener {
             listener?.onClick()
         }
         val a = context.obtainStyledAttributes(attrs, R.styleable.FormRowWithImage)

@@ -48,16 +48,16 @@ abstract class TagAdapter<T> {
         return mTagDatas!![position]
     }
 
-    abstract fun getView(parent: FlowLayout?, position: Int, t: T): View?
-    fun onSelected(position: Int, view: View?) {
+    abstract fun getView(parent: FlowLayout?, position: Int, t: Any?): View?
+    fun onSelected(position: Int) {
         Log.d("zhy", "onSelected $position")
     }
 
-    fun unSelected(position: Int, view: View?) {
+    fun unSelected(position: Int) {
         Log.d("zhy", "unSelected $position")
     }
 
-    fun setSelected(position: Int, t: T): Boolean {
+    fun setSelected(): Boolean {
         return false
     }
 

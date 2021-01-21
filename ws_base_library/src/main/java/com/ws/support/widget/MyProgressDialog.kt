@@ -21,6 +21,7 @@ import java.util.*
  * @date 2020/6/5 14:01
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 class MyProgressDialog private constructor(context: Context, theme: Int) : Dialog(context, theme) {
     fun setMessage(msg: String?): MyProgressDialog? {
         val loadingTextView = dialog!!.findViewById<TextView>(R.id.tv_status)

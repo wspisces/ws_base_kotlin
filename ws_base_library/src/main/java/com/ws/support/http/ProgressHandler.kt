@@ -37,32 +37,28 @@ class ProgressHandler : Handler {
         this.cancelable = cancelable
     }
 
-    fun initProgressDialog(message: String?) {
+    private fun initProgressDialog(message: String?) {
         if (pd == null) {
-            pd = MyProgressDialog.Companion.createProgrssDialog(mContext)
-            pd!!.setCancelable(cancelable)
-            pd!!.setMessage(message)
-            pd!!.setCanceledOnTouchOutside(false)
+            pd = MyProgressDialog.createProgrssDialog(mContext)
+            pd?.setCancelable(cancelable)
+            pd?.setMessage(message)
+            pd?.setCanceledOnTouchOutside(false)
             //pd.setOnKeyListener(onKeyListener);
-            pd!!.window?.setGravity(Gravity.CENTER)
+            pd?.window?.setGravity(Gravity.CENTER)
             if (cancelable) {
-                pd!!.setOnCancelListener { dialog: DialogInterface? ->
-                    if (mProgressCancelListener != null) {
-                        mProgressCancelListener!!.onProgressCanceled()
-                    }
+                pd!!.setOnCancelListener {
+                    mProgressCancelListener?.onProgressCanceled()
                 }
             }
             if (!pd!!.isShowing) {
-                pd!!.show() //显示进度条
+                pd?.show() //显示进度条
             }
         }
     }
 
     private fun dismissProgressDialog() {
-        if (pd != null) {
-            pd!!.dismiss() //取消进度条
-            pd = null
-        }
+        pd?.dismiss() //取消进度条
+        pd = null
     }
 
     override fun handleMessage(msg: Message) {

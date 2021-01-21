@@ -33,9 +33,9 @@ class EmptyView : ConstraintLayout {
         iv = v.findViewById(R.id.empty_iv)
         tv = v.findViewById(R.id.empty_tv)
         btn = v.findViewById(R.id.empty_btn)
-        btn.setOnClickListener(OnClickListener { view: View? ->
-                listener?.onClick()
-        })
+        btn.setOnClickListener {
+            listener?.onClick()
+        }
     }
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
@@ -58,11 +58,11 @@ class EmptyView : ConstraintLayout {
         iv = v.findViewById(R.id.empty_iv)
         tv = v.findViewById(R.id.empty_tv)
         btn = v.findViewById(R.id.empty_btn)
-        btn.setOnClickListener(OnClickListener { view: View? ->
+        btn.setOnClickListener {
             if (listener != null) {
                 listener!!.onClick()
             }
-        })
+        }
         val a = context.obtainStyledAttributes(attrs, R.styleable.EmptyView)
         val msg = a.getString(R.styleable.EmptyView_msg)
         if (TextUtils.isEmpty(msg)) {

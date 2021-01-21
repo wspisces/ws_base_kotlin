@@ -60,7 +60,7 @@ class CodeEditText(context: Context, attrs: AttributeSet?) : ViewGroup(context, 
                 }
             }
         }
-        val onKeyListener = OnKeyListener { v, keyCode, event ->
+        val onKeyListener = OnKeyListener { _, keyCode, _ ->
             if (keyCode == KeyEvent.KEYCODE_DEL) {
                 backFocus()
             }
@@ -94,7 +94,7 @@ class CodeEditText(context: Context, attrs: AttributeSet?) : ViewGroup(context, 
             editText.id = i
             editText.setEms(1)
             editText.addTextChangedListener(textWatcher)
-            editText.onFocusChangeListener = OnFocusChangeListener { view: View?, b: Boolean -> setBg(editText, b) }
+            editText.onFocusChangeListener = OnFocusChangeListener { _: View?, b: Boolean -> setBg(editText, b) }
             addView(editText, i)
         }
     }
@@ -198,7 +198,7 @@ class CodeEditText(context: Context, attrs: AttributeSet?) : ViewGroup(context, 
     }
 
     private val screenWidth: Int
-        private get() {
+        get() {
             val resources = this.resources
             val dm = resources.displayMetrics
             return dm.widthPixels

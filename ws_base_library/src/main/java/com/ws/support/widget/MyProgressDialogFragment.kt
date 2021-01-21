@@ -24,6 +24,7 @@ import java.util.*
  * @date 2020/6/2 14:12
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 class MyProgressDialogFragment : DialogFragment() {
     lateinit var progressBar: ContentLoadingProgressBar
     lateinit var tv: TextView

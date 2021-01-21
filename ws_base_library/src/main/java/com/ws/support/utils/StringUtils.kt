@@ -1,3 +1,5 @@
+@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
 package com.ws.support.utils
 
 import java.io.UnsupportedEncodingException
@@ -119,9 +121,7 @@ object StringUtils {
      */
     fun isChinese(c: Char): Boolean {
         val ub = Character.UnicodeBlock.of(c)
-        return if (ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub === Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS || ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B || ub === Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub === Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS || ub === Character.UnicodeBlock.GENERAL_PUNCTUATION) {
-            true
-        } else false
+        return ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS || ub === Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS || ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_A || ub === Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS_EXTENSION_B || ub === Character.UnicodeBlock.CJK_SYMBOLS_AND_PUNCTUATION || ub === Character.UnicodeBlock.HALFWIDTH_AND_FULLWIDTH_FORMS || ub === Character.UnicodeBlock.GENERAL_PUNCTUATION
     }
 
     /**
@@ -161,10 +161,8 @@ object StringUtils {
      * @return
      */
     fun isLetters(c: Char): Boolean {
-        return if (c <= 'Z' && c >= 'A'
-                || c <= 'z' && c >= 'a') {
-            true
-        } else false
+        return (c in 'A'..'Z'
+                || c in 'a'..'z')
     }
 
     /**
@@ -239,8 +237,8 @@ object StringUtils {
      * @param s
      * @return
      */
-    fun subZeroAndDot(s: String): String {
-        var s = s
+    fun subZeroAndDot(str: String): String {
+        var s = str
         if (s.indexOf(".") > 0) {
             s = s.replace("0+?$".toRegex(), "") //去掉多余的0
             s = s.replace("[.]$".toRegex(), "") //如最后一位是.则去掉

@@ -41,6 +41,7 @@ import com.ws.base.R
  *
  * @author mrsimple
  */
+@Suppress("DEPRECATION")
 class SegmentView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) : RadioGroup(context, attrs) {
     var mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
 
@@ -64,7 +65,7 @@ class SegmentView @JvmOverloads constructor(context: Context?, attrs: AttributeS
      */
     private var mCheckedListener: OnItemCheckedListener? = null
     private fun setupOnItenClickListener() {
-        super.setOnCheckedChangeListener { group, checkedId -> // 包装回调
+        super.setOnCheckedChangeListener { _, checkedId -> // 包装回调
             if (mCheckedListener != null) {
                 val checkedButton = findViewById<View>(checkedId) as RadioButton
                 mCheckedListener!!.onCheck(checkedButton, checkedId, checkedButton.text

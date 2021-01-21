@@ -20,6 +20,7 @@ import java.text.DecimalFormat
  *
  * @author zhy
  */
+@Suppress("DEPRECATION")
 class AppUtils private constructor() {
     companion object {
         /**

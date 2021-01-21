@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
  *
  * @author zhy
  */
+@Suppress("DEPRECATION")
 class ScreenUtils private constructor() {
     companion object {
         /**

@@ -21,6 +21,7 @@ import java.util.concurrent.locks.ReentrantLock
  * 2020/9/18 17:10
  * 修改人：ws
  */
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
 class WsManager : IWsManager {
     private var mContext: Context? = null
     private var wsUrl: String? = null
@@ -173,7 +174,7 @@ class WsManager : IWsManager {
         }
         mCurrentStatus = WsStatus.RECONNECT
         Log.e("liusehngjei", "reconnectCount11111111[$reconnectCount]")
-        val delay = reconnectCount * RECONNECT_INTERVAL.toLong()
+        //val delay = reconnectCount * RECONNECT_INTERVAL.toLong()
         //        wsMainHandler.postDelayed(reconnectRunnable, delay > RECONNECT_MAX_TIME ? RECONNECT_MAX_TIME : delay);
         wsMainHandler.postDelayed(reconnectRunnable, 10000)
         Log.e("liusehngjei", "reconnectCount[$reconnectCount]")

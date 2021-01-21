@@ -31,6 +31,7 @@ import java.util.concurrent.TimeUnit
  * 2020/11/13 11:04
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivity() {
     protected var baseBinding: ActivityDataBaseBinding? = null
     protected var mContext: Context? = null
@@ -51,7 +52,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
     }
 
     protected val isFullScreen: Boolean
-        protected get() = false
+        get() = false
 
     /**
      * 隐藏Toolbar
@@ -176,7 +177,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
     }
 
     protected val menuLayout: Int
-        protected get() = 0
+        get() = 0
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
@@ -243,7 +244,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
     }
 
     protected val isPortrait: Boolean
-        protected get() = true
+        get() = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (isFullScreen) {
@@ -274,7 +275,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
         //声明Toast
         toast = Toast(this)
         //给Toast设置布局
-        toast!!.view = toastRoot
+        toastRoot.also { toast!!.view = it }
         //设置布局文件里的控件属性
         toatTv = toastRoot.findViewById(R.id.tv_toast)
         toast!!.duration = Toast.LENGTH_SHORT

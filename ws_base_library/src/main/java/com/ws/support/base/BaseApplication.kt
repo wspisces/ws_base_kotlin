@@ -1,5 +1,6 @@
 package com.ws.support.base
 
+import android.content.Context
 import androidx.multidex.MultiDexApplication
 import com.ws.support.utils.MyFileUtils
 import es.dmoral.toasty.Toasty
@@ -16,6 +17,7 @@ open class BaseApplication : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         mInstance = this
+        context = applicationContext
         MyFileUtils.initPath()
         Toasty.Config.getInstance()
                 .tintIcon(true) // optional (apply textColor also to the icon)
@@ -26,9 +28,10 @@ open class BaseApplication : MultiDexApplication() {
     }
 
     companion object {
-        var retrofit: Retrofit? = null
-        private var mInstance: BaseApplication? = null
-        fun getInstance(): BaseApplication? {
+        lateinit  var retrofit: Retrofit
+        private lateinit var mInstance: BaseApplication
+        lateinit var context: Context
+        fun getInstance(): BaseApplication {
             return mInstance
         }
     }

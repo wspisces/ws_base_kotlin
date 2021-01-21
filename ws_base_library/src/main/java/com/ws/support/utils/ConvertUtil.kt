@@ -51,8 +51,8 @@ object ConvertUtil {
     /**
      * 去除数据小数后面的0
      */
-    fun formatNumber(number: String): String {
-        var number = number
+    fun formatNumber(num: String): String {
+        var number = num
         if (number.contains(".")) {
             while (number.endsWith("0")) {
                 number = number.substring(0, number.length - 1)

@@ -7,6 +7,7 @@ import android.widget.GridView
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 
 /**
  *
@@ -122,6 +123,7 @@ object ViewMeasureUtils {
     }
 
     fun getResourceColor(context: Context, colorId: Int): Int {
-        return context.resources.getColor(colorId)
+        return ContextCompat.getColor(context,colorId)
+        //context.resources.getColor(colorId)
     }
 }

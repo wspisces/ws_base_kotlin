@@ -22,6 +22,7 @@ import com.ws.support.utils.StringUtils.isNotEmptyWithNull
  * @date 12/21/20 7:11 PM
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 class HoloTimeDialog(private val context: Context) {
     var listener: OnHoloDialogClickListener? = null
     private lateinit var dialog: Dialog
@@ -40,13 +41,13 @@ class HoloTimeDialog(private val context: Context) {
         tvCancel = view.findViewById(R.id.tv_cancel)
         tvOk = view.findViewById(R.id.tv_ok)
         timePicker = view.findViewById(R.id.picker)
-        timePicker.setDescendantFocusability(TimePicker.FOCUS_BLOCK_DESCENDANTS) //设置点击事件不弹键盘
+        timePicker.descendantFocusability = TimePicker.FOCUS_BLOCK_DESCENDANTS //设置点击事件不弹键盘
         timePicker.setIs24HourView(true) //设置时间显示为24小时
-        tvCancel.setOnClickListener(View.OnClickListener { view1: View? ->
-            if (listener != null) listener!!.onCancelClick()
+        tvCancel.setOnClickListener {
+            listener?.onCancelClick()
             dialog.dismiss()
-        })
-        tvOk.setOnClickListener({ view12: View? -> if (listener != null) listener!!.onOKClick(dialog, timePicker.getCurrentHour(), timePicker.getCurrentMinute()) })
+        }
+        tvOk.setOnClickListener { listener?.onOKClick(dialog, timePicker.currentHour, timePicker.currentMinute) }
         // 定义Dialog布局和参数
         dialog = Dialog(context, R.style.HoloDialogStyle)
         dialog.setContentView(view)
@@ -76,8 +77,8 @@ class HoloTimeDialog(private val context: Context) {
         val systemResources = Resources.getSystem()
         val hourNumberPickerId = systemResources.getIdentifier("hour", "id", "android")
         val minuteNumberPickerId = systemResources.getIdentifier("minute", "id", "android")
-        val hourNumberPicker = timePicker!!.findViewById<View>(hourNumberPickerId) as NumberPicker
-        val minuteNumberPicker = timePicker!!.findViewById<View>(minuteNumberPickerId) as NumberPicker
+        val hourNumberPicker = timePicker.findViewById<View>(hourNumberPickerId) as NumberPicker
+        val minuteNumberPicker = timePicker.findViewById<View>(minuteNumberPickerId) as NumberPicker
         hourNumberPicker.maxValue = hour
         minuteNumberPicker.maxValue = min
         return this

@@ -35,7 +35,7 @@ class ActionSheetDialog(private val context: Context) {
         lLayout_content = view
                 .findViewById(R.id.ll)
         val txt_cancel = view.findViewById<Button>(R.id.btn_cancel)
-        txt_cancel.setOnClickListener { v: View? -> dialog.dismiss() }
+        txt_cancel.setOnClickListener { dialog.dismiss() }
 
         // 定义Dialog布局和参数
         dialog = Dialog(context, R.style.ActionSheetDialogStyle)
@@ -120,7 +120,7 @@ class ActionSheetDialog(private val context: Context) {
                     LinearLayout.LayoutParams.MATCH_PARENT, height)
 
             // 点击事件
-            textView.setOnClickListener { v: View? ->
+            textView.setOnClickListener {
                 listener.onClick(i)
                 dialog.dismiss()
             }

@@ -227,7 +227,7 @@ object BitmapUtil {
                 outStream.flush()
                 outStream.close()
             }
-            val cr = context.contentResolver
+            //val cr = context.contentResolver
             //			MediaStore.Images.Media.insertImage(cr, bitmap, uuid, "");
 //			updateGallery(context, "file://" + Environment.getExternalStorageDirectory());
             bitmap.recycle()

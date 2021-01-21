@@ -50,7 +50,7 @@ class AlertDialogFragment private constructor() : DialogFragment() {
         val window = dialog!!.window
         //window.getDecorView().setPadding(0, 0, 0, 0);
         val attributes = window!!.attributes
-        attributes.width = (ScreenUtils.Companion.getScreenWidth(activity) * 0.8f) as Int
+        attributes.width = (ScreenUtils.getScreenWidth(activity) * 0.8f).toInt()
         attributes.height = WindowManager.LayoutParams.WRAP_CONTENT
         attributes.dimAmount = 0.7f
         attributes.gravity = Gravity.CENTER
@@ -64,8 +64,8 @@ class AlertDialogFragment private constructor() : DialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        btnCancel!!.setOnClickListener { view: View? -> dismiss() }
-        btnOk!!.setOnClickListener { view: View? -> listener!!.onCommit(this) }
+        btnCancel.setOnClickListener { dismiss() }
+        btnOk.setOnClickListener { listener?.onCommit(this) }
     }
 
     interface OnAlertDialogFragmentListener {

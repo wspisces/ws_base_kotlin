@@ -18,7 +18,7 @@ import java.util.*
 class TagFlowLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyle: Int = 0) : FlowLayout(context, attrs, defStyle), OnDataChangedListener {
     private var mTagAdapter: TagAdapter<*>? = null
     private var mSelectedMax = -1 //-1为不限制数量
-    private val mSelectedView: MutableSet<Int> = HashSet()
+    private val mSelectedView: MutableSet<Int> = mutableSetOf()
     private var mOnSelectListener: OnSelectListener? = null
     private var mOnTagClickListener: OnTagClickListener? = null
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -46,9 +46,9 @@ class TagFlowLayout @JvmOverloads constructor(context: Context, attrs: Attribute
     fun changeAdapter() {
         removeAllViews()
         val adapter = mTagAdapter
-        var tagViewContainer: TagView? = null
-        val preCheckedList: HashSet<*>? = mTagAdapter.getPreCheckedList()
-        for (i in 0 until adapter.getCount()) {
+        var tagViewContainer: TagView?
+        val preCheckedList: HashSet<Int>? = mTagAdapter?.preCheckedList
+        for (i in 0 until (adapter?.count ?: 0)) {
             val tagView = adapter!!.getView(this, i, adapter.getItem(i))
             tagViewContainer = TagView(context)
             tagView!!.isDuplicateParentStateEnabled = true
@@ -71,20 +71,19 @@ class TagFlowLayout @JvmOverloads constructor(context: Context, attrs: Attribute
             if (preCheckedList!!.contains(i)) {
                 setChildChecked(i, tagViewContainer)
             }
-            if (mTagAdapter!!.setSelected(i, adapter.getItem(i))) {
+            if (mTagAdapter!!.setSelected()) {
                 setChildChecked(i, tagViewContainer)
             }
             tagView.isClickable = false
             val finalTagViewContainer: TagView = tagViewContainer
-            tagViewContainer.setOnClickListener(OnClickListener { v: View? ->
+            tagViewContainer.setOnClickListener(OnClickListener {
                 doSelect(finalTagViewContainer, i)
-                if (mOnTagClickListener != null) {
-                    mOnTagClickListener!!.onTagClick(finalTagViewContainer, i,
-                            this@TagFlowLayout)
-                }
+                mOnTagClickListener?.onTagClick(finalTagViewContainer, i,
+                        this@TagFlowLayout)
+
             })
         }
-        mSelectedView.addAll(preCheckedList)
+        preCheckedList?.let { mSelectedView.addAll(it) }
     }
 
     fun setMaxSelectCount(count: Int) {
@@ -100,12 +99,12 @@ class TagFlowLayout @JvmOverloads constructor(context: Context, attrs: Attribute
 
     private fun setChildChecked(position: Int, view: TagView) {
         view.isChecked = true
-        mTagAdapter!!.onSelected(position, view.tagView)
+        mTagAdapter!!.onSelected(position)
     }
 
     private fun setChildUnChecked(position: Int, view: TagView) {
         view.isChecked = false
-        mTagAdapter!!.unSelected(position, view.tagView)
+        mTagAdapter!!.unSelected(position)
     }
 
     private fun doSelect(child: TagView, position: Int) {
@@ -168,7 +167,7 @@ class TagFlowLayout @JvmOverloads constructor(context: Context, attrs: Attribute
                     val index = pos.toInt()
                     mSelectedView.add(index)
                     val tagView = getChildAt(index) as TagView
-                    tagView?.let { setChildChecked(index, it) }
+                    setChildChecked(index, tagView)
                 }
             }
             super.onRestoreInstanceState(bundle.getParcelable(KEY_DEFAULT))

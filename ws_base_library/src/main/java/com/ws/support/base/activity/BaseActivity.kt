@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.*
+import android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -23,6 +24,7 @@ import io.reactivex.functions.Consumer
 import org.greenrobot.eventbus.EventBus
 import java.util.concurrent.TimeUnit
 
+@Suppress("DEPRECATION")
 abstract class BaseActivity : AppCompatActivity() {
     lateinit var mToolbar: Toolbar
     lateinit var mTitle: TextView
@@ -108,14 +110,14 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected val isFullScreen: Boolean
-        protected get() = false
+        get() = false
 
     /**
      * 隐藏navigationBar
      */
     private fun hideNavigation() {
-        val decorView = window.decorView
-        val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION /*| View.SYSTEM_UI_FLAG_FULLSCREEN*/
+        val decorView = this.window.decorView
+        val uiOptions = SYSTEM_UI_FLAG_HIDE_NAVIGATION /*| View.SYSTEM_UI_FLAG_FULLSCREEN*/
         decorView.systemUiVisibility = uiOptions
     }
 
@@ -160,17 +162,15 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     private fun initToolbar() {
         mToolbar = findViewById<View>(R.id.toolbar) as Toolbar
-        if (mToolbar != null) {
-            if (fullScreen() || hideToolbar()) {
-                mToolbar.visibility = View.GONE
-                return
-            }
-            mToolbar.title = ""
-            if (enableNavigation()) {
-                mToolbar.setNavigationIcon(R.drawable.ic_back_white)
-            }
-            setSupportActionBar(mToolbar)
+        if (fullScreen() || hideToolbar()) {
+            mToolbar.visibility = View.GONE
+            return
         }
+        mToolbar.title = ""
+        if (enableNavigation()) {
+            mToolbar.setNavigationIcon(R.drawable.ic_back_white)
+        }
+        setSupportActionBar(mToolbar)
         mTitle = findViewById(R.id.title)
         setTitle(toolbarTite)
     }
@@ -179,7 +179,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 设置标题
      */
     protected fun setTitle(title: String?) {
-        if (mTitle != null && title != null) {
+        if (title != null) {
             mTitle.text = title
         }
     }
@@ -317,7 +317,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected val menuLayout: Int
-        protected get() = 0
+        get() = 0
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId

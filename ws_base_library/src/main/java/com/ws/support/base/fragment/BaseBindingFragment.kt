@@ -11,11 +11,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.ws.support.utils.ToastUtils
 import com.ws.support.utils.ToastUtils.normal
 import com.ws.support.widget.MyProgressDialogFragment
 import com.ws.support.widget.MyProgressDialogFragment.Companion.newInstance
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.android.schedulers.AndroidSchedulers.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -25,6 +27,7 @@ import java.util.concurrent.TimeUnit
  * @date 12/23/20 2:30 PM
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 abstract class BaseBindingFragment<DB : ViewDataBinding?> : Fragment() {
     protected lateinit var mContext: Context
     private var mDialog: MyProgressDialogFragment? = null
@@ -90,7 +93,7 @@ abstract class BaseBindingFragment<DB : ViewDataBinding?> : Fragment() {
         if (TextUtils.isEmpty(message)) {
             return
         }
-        normal(message)
+        normal(message!!)
     }
 
     //跳转
@@ -118,10 +121,10 @@ abstract class BaseBindingFragment<DB : ViewDataBinding?> : Fragment() {
 
     @SuppressLint("CheckResult")
     protected fun delayEnable(view: View, delay: Long) {
-        Observable.timer(delay, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe { aLong: Long? -> view.isEnabled = true }
+        Observable.timer(delay, TimeUnit.MILLISECONDS, mainThread())
+                .observeOn(mainThread())
+                .subscribeOn(mainThread())
+                .subscribe { view.isEnabled = true }
     }
 
     companion object {

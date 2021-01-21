@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit
  * 2020/11/13 11:04
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 abstract class BaseViewBindActivity : AppCompatActivity() {
     protected var baseBinding: ActivityBaseBinding? = null
     protected var mContext: Context? = null
@@ -59,9 +60,9 @@ abstract class BaseViewBindActivity : AppCompatActivity() {
     }
 
     protected val isPortrait: Boolean
-        protected get() = true
+        get() = true
     protected val isFullScreen: Boolean
-        protected get() = false
+        get() = false
 
     /**
      * 隐藏Toolbar

@@ -52,11 +52,11 @@ class FormColum : ConstraintLayout {
         tvTitle = mView.findViewById(R.id.tv_title)
         etContent = mView.findViewById(R.id.et_content)
         btnAction = mView.findViewById(R.id.btn_action)
-        btnAction.setOnClickListener(OnClickListener { view: View? ->
+        btnAction.setOnClickListener {
             if (listener != null) {
                 listener!!.onClick()
             }
-        })
+        }
         val a = context.obtainStyledAttributes(attrs, R.styleable.FormColum)
         tvTitle.setText(a.getString(R.styleable.FormColum_title))
         val hint = a.getString(R.styleable.FormColum_hint)

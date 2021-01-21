@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
  *
  * @author zhy
  */
+@Suppress("DEPRECATION")
 class NetUtils private constructor() {
     /**
      * 判断是否包含SIM卡
@@ -58,9 +59,9 @@ class NetUtils private constructor() {
          */
         fun isConnected(context: Context): Boolean {
             val connectivity = context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+                    .getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
             if (null != connectivity) {
-                val info = connectivity.activeNetworkInfo
+                val info:NetworkInfo? = connectivity.activeNetworkInfo
                 if (null != info && info.isConnected) {
                     if (info.state == NetworkInfo.State.CONNECTED) {
                         return true
@@ -97,7 +98,7 @@ class NetUtils private constructor() {
             val cm = context
                     .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
                     ?: return false
-            return cm.activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI
+            return cm.activeNetworkInfo?.type == ConnectivityManager.TYPE_WIFI
         }
 
         /**

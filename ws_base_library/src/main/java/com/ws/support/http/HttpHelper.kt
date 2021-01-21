@@ -12,7 +12,16 @@ import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-
+import android.util.Log
+import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.HttpException
+import java.io.EOFException
+import java.net.ConnectException
+import java.net.SocketException
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import javax.net.ssl.SSLException
 /**
  * 封装http
  * @author  : curry
@@ -38,7 +47,7 @@ object HttpHelper {
      * 创建
      */
     fun <B> createService(service: Class<B>): B {
-        return BaseApplication.Companion.retrofit!!.create(service)
+        return BaseApplication.retrofit.create(service)
     }
 
     /**
@@ -60,3 +69,4 @@ object HttpHelper {
                 Gson().toJson(params))
     }
 }
+

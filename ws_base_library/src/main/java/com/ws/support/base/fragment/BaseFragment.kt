@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit
  * @author Johnny.xu
  * date 2017/2/16
  */
+@Suppress("DEPRECATION")
 abstract class BaseFragment : Fragment() {
     protected var mContext: Context? = null
     private var mDialog: MyProgressDialogFragment? = null
@@ -75,7 +76,7 @@ abstract class BaseFragment : Fragment() {
         if (TextUtils.isEmpty(message)) {
             return
         }
-        ToastUtils.normal(message)
+        ToastUtils.normal(message!!)
     }
 
     //跳转
@@ -106,7 +107,7 @@ abstract class BaseFragment : Fragment() {
         Observable.timer(delay, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe { aLong: Long? -> view.isEnabled = true }
+                .subscribe { view.isEnabled = true }
         //new Handler().postDelayed(() -> view.setEnabled(true), delay);
     }
 

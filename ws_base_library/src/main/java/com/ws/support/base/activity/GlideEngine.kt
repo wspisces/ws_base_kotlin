@@ -57,16 +57,16 @@ class GlideEngine private constructor() : ImageEngine {
                 .into(object : ImageViewTarget<Bitmap?>(imageView) {
                     override fun onLoadStarted(placeholder: Drawable?) {
                         super.onLoadStarted(placeholder)
-                        callback?.onShowLoading()
+                        callback.onShowLoading()
                     }
 
                     override fun onLoadFailed(errorDrawable: Drawable?) {
                         super.onLoadFailed(errorDrawable)
-                        callback?.onHideLoading()
+                        callback.onHideLoading()
                     }
 
                     override fun setResource(resource: Bitmap?) {
-                        callback?.onHideLoading()
+                        callback.onHideLoading()
                         if (resource != null) {
                             val eqLongImage = MediaUtils.isLongImg(resource.width,
                                     resource.height)

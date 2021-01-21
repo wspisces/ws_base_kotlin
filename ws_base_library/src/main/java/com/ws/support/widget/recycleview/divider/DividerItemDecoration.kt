@@ -1,14 +1,17 @@
 package com.ws.support.widget.recycleview.divider
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
+@SuppressLint("UseCompatLoadingForDrawables")
 class DividerItemDecoration(context: Context, drawableRes: Int, orientation: Int) : ItemDecoration() {
     private val mDivider: Drawable
     private var mOrientation = 0
@@ -30,9 +33,9 @@ class DividerItemDecoration(context: Context, drawableRes: Int, orientation: Int
         val left = parent.paddingLeft
         val right = parent.width - parent.paddingRight
         val childCount = parent.childCount
-        for (i in 0 until childCount) {
+        for (i in 0..childCount - 1) {
             val child = parent.getChildAt(i)
-            val v = RecyclerView(parent.context)
+            //val v = RecyclerView(parent.context)
             val params = child.layoutParams as RecyclerView.LayoutParams
             val top = child.bottom + params.bottomMargin
             val bottom = top + mDivider.intrinsicHeight
@@ -72,7 +75,8 @@ class DividerItemDecoration(context: Context, drawableRes: Int, orientation: Int
     init {
         // final TypedArray a = context.obtainStyledAttributes(ATTRS);
         // a.recycle();
-        mDivider = context.resources.getDrawable(drawableRes)
+        mDivider = ContextCompat.getDrawable(context,drawableRes)!!
+               // context.resources.getDrawable(drawableRes)
         setOrientation(orientation)
     }
 }

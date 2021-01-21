@@ -20,6 +20,7 @@ import com.ws.base.R
  * 2020/6/19 15:31
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 class MenuColumn : ConstraintLayout {
     var listener: OnMenuClickListener? = null
     private val onClickListener = OnClickListener { listener?.onClick() }

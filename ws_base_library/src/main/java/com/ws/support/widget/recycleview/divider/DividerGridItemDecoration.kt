@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Rect
 import android.graphics.drawable.Drawable
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
@@ -56,8 +57,8 @@ class DividerGridItemDecoration(context: Context, drawableRes: Int) : ItemDecora
         }
     }
 
-    private fun isLastColum(parent: RecyclerView, pos: Int, spanCount: Int, childCount: Int): Boolean {
-        var childCount = childCount
+    private fun isLastColum(parent: RecyclerView, pos: Int, spanCount: Int, count: Int): Boolean {
+        var childCount = count
         val layoutManager = parent.layoutManager
         if (layoutManager is GridLayoutManager) {
             if ((pos + 1) % spanCount == 0) // 如果是最后一列，则不需要绘制右边
@@ -80,8 +81,8 @@ class DividerGridItemDecoration(context: Context, drawableRes: Int) : ItemDecora
         return false
     }
 
-    private fun isLastRaw(parent: RecyclerView, pos: Int, spanCount: Int, childCount: Int): Boolean {
-        var childCount = childCount
+    private fun isLastRaw(parent: RecyclerView, pos: Int, spanCount: Int, count: Int): Boolean {
+        var childCount = count
         val layoutManager = parent.layoutManager
         if (layoutManager is GridLayoutManager) {
             /*childCount = childCount - childCount % spanCount;
@@ -132,6 +133,7 @@ class DividerGridItemDecoration(context: Context, drawableRes: Int) : ItemDecora
         // final TypedArray a = context.obtainStyledAttributes(ATTRS);
         // mDivider = a.getDrawable(0);
         // a.recycle();
-        mDivider = context.resources.getDrawable(drawableRes)
+        mDivider = ContextCompat.getDrawable(context,drawableRes)!!
+                //context.resources.getDrawable(drawableRes)
     }
 }

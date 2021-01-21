@@ -69,7 +69,7 @@ class InputDialogFragment private constructor() : DialogFragment() {
         val window = dialog!!.window
         //window.getDecorView().setPadding(0, 0, 0, 0);
         val attributes = window!!.attributes
-        attributes.width = (ScreenUtils.Companion.getScreenWidth(activity) * 0.8f) as Int
+        attributes.width = (ScreenUtils.getScreenWidth(activity) * 0.8f).toInt()
         attributes.height = WindowManager.LayoutParams.WRAP_CONTENT
         attributes.dimAmount = 0.7f
         attributes.gravity = Gravity.CENTER
@@ -83,10 +83,10 @@ class InputDialogFragment private constructor() : DialogFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        btnCancel.setOnClickListener { view: View? -> listener!!.onCancel(this) }
-        btnOk.setOnClickListener { view: View? ->
+        btnCancel.setOnClickListener { listener?.onCancel(this) }
+        btnOk.setOnClickListener {
             if (et.text.length > 0) {
-                listener!!.onCommit(this, et.text.toString())
+                listener?.onCommit(this, et.text.toString())
             } else {
                 if (StringUtils.isNotEmptyWithNull(errorMsg)) ToastUtils.error(errorMsg)
             }

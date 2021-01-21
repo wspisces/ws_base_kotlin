@@ -16,6 +16,7 @@ import com.ws.base.R
  * @date 2020/6/5 14:01
  * 修改人：ws
  */
+@Suppress("DEPRECATION")
 class MyProgressDialog private constructor(context: Context, theme: Int) : AppCompatDialog(context, theme) {
     fun setMessage(msg: String?): MyProgressDialog? {
         val loadingTextView = dialog!!.findViewById<TextView>(R.id.tv_status)
@@ -43,8 +44,9 @@ class MyProgressDialog private constructor(context: Context, theme: Int) : AppCo
 
         fun setWidth(dialog: AppCompatDialog, context: Context) {
             val dm = DisplayMetrics()
-            val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            wm.defaultDisplay.getMetrics(dm)
+            (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).also {
+                it.defaultDisplay.getMetrics(dm)
+            }
             val params = dialog.window!!.attributes
             params.width = (dm.widthPixels * 0.6).toInt()
             //params.height = (int) (dm.widthPixels * 0.9);

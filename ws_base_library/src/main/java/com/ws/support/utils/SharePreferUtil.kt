@@ -37,12 +37,12 @@ object SharePreferUtil {
     }
 
     fun getEditor(): SharedPreferences.Editor {
-        val sharedPreferences: SharedPreferences = BaseApplication.Companion.getInstance()!!.getSharedPreferences(TAG, Context.MODE_PRIVATE)
+        val sharedPreferences: SharedPreferences = BaseApplication.getInstance().getSharedPreferences(TAG, Context.MODE_PRIVATE)
         return sharedPreferences.edit()
     }
 
     fun getSharedPreferences(): SharedPreferences {
-        return BaseApplication.Companion.getInstance()!!.getSharedPreferences(TAG, Context.MODE_PRIVATE)
+        return BaseApplication.getInstance().getSharedPreferences(TAG, Context.MODE_PRIVATE)
     }
 
     fun getString(str: String?): String? {

@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.ws.support.utils
 
 import android.annotation.SuppressLint
@@ -51,13 +53,13 @@ object NetWorkUtils {
     @SuppressLint("MissingPermission")
     fun getNetworkTypeName(context: Context): String {
         val manager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        var networkInfo: NetworkInfo
+        var networkInfo: NetworkInfo? = null
         var type = NETWORK_TYPE_DISCONNECT
-        if (manager.activeNetworkInfo.also { networkInfo = it } == null) {
+        if (manager.activeNetworkInfo?.also { networkInfo = it } == null) {
             return type
         }
-        if (networkInfo.isConnected == true) {
-            val typeName = networkInfo.typeName
+        if (networkInfo?.isConnected == true) {
+            val typeName = networkInfo?.typeName
             type = if ("WIFI".equals(typeName, ignoreCase = true)) {
                 NETWORK_TYPE_WIFI
             } else if ("MOBILE".equals(typeName, ignoreCase = true)) {
@@ -102,12 +104,13 @@ object NetWorkUtils {
 
     // 检测网络
     fun checkNetworkAvailable(): Boolean {
-        val connectivity = BaseApplication.Companion.getInstance()!!
-                .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivity = BaseApplication.getInstance()
+                .getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager
         if (connectivity == null) {
             return false
         } else {
-            @SuppressLint("MissingPermission") val info = connectivity.allNetworkInfo
+            @SuppressLint("MissingPermission")
+            val info = connectivity.allNetworkInfo
             if (info != null) {
                 for (i in info.indices) {
                     if (info[i].state == NetworkInfo.State.CONNECTED) {
@@ -126,7 +129,7 @@ object NetWorkUtils {
         return false
     }
 
-    fun getIP(context: Context?): String? {
+    fun getIP(context: Context): String? {
         try {
             val en = NetworkInterface.getNetworkInterfaces()
             while (en.hasMoreElements()) {
