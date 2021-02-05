@@ -29,3 +29,14 @@ fun View.showSnakeBar(text: Int, actionText: String? = null, duration: Int = Sna
     }
     snackbar.show()
 }
+
+//内联函数相当于把带有inline声明的方法体代码粘到调用处了
+inline fun View.setOnSingleClickListener(crossinline onClick: () -> Unit, delayMillis: Long) {
+    this.setOnClickListener {
+        this.isClickable = false
+        onClick()
+        this.postDelayed({
+            this.isClickable = true
+        }, delayMillis)
+    }
+}

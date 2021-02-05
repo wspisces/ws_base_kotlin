@@ -111,6 +111,10 @@ object ToastUtils {
         Toasty.error(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT, true).show()
     }
 
+    fun error(msg: Int) {
+        Toasty.error(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT, true).show()
+    }
+
     fun errorL(msg: String) {
         Toasty.error(BaseApplication.getInstance(), msg, Toasty.LENGTH_LONG, true).show()
     }

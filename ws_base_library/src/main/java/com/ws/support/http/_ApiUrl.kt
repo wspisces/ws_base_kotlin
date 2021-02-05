@@ -4,7 +4,7 @@ import io.reactivex.Observable
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.http.*
-
+@JvmSuppressWildcards
 interface _ApiUrl {
     //RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
     //JsonUtil.toJson(param));
