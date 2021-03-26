@@ -7,18 +7,11 @@ package com.ws.support.httpkt
  * @date 1/22/21 9:07 AM
  * 修改人：ws
  */
-import android.content.Context
 import android.webkit.MimeTypeMap
 import com.ws.base.BuildConfig
-import com.ws.support.http.ResultTO
 import com.ws.support.http._ApiUrl
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
-import retrofit2.Response
 import java.io.File
 import java.net.URLEncoder
 import java.util.*
@@ -29,7 +22,7 @@ import java.util.*
  */
 object RetrofitManagerKt {
     // 接口API服务
-    val apiService by lazy { ApiFactory.create(BuildConfig.baseUrl, _ApiUrl::class.java) }
+    val apiService by lazy { ApiFactory.createService(BuildConfig.baseUrl, _ApiUrl::class.java) }
 
     /**
      * 执行网络请求（结合kotlin 协程使用）

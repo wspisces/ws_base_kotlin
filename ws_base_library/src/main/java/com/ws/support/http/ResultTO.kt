@@ -43,3 +43,12 @@ open class ResultTO {
         return JsonUtils.toJson(this)
     }
 }
+
+/*数据解析扩展函数*/
+fun ResultTO.dataConvert(): Any? {
+    if (code == 200) {
+        return data
+    } else {
+        throw Exception(msg)
+    }
+}

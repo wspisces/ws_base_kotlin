@@ -39,6 +39,7 @@ fun ViewModel.launch(
 /**
  * ViewModel扩展属性：加载状态
  */
-val ViewModel.loadState: MutableLiveData<LoadState>
+/*val ViewModel.loadState: MutableLiveData<LoadState>
     get() = MutableLiveData()
-
+val ViewModel.errorMsg: MutableLiveData<String>
+    get() = MutableLiveData()*/

@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/cn_len_three"
         android:gravity="center"
+        android:visibility="gone"
         android:textColor="@color/white"
         android:textSize="@dimen/text_size_normal" />
 </LinearLayout>

@@ -49,17 +49,20 @@ class FormRow : ConstraintLayout {
         tvTitle.text = s
     }
 
-    fun getUserImage(): ImageView? {
+    fun getUserImage(): ImageView {
         return ivUser
     }
 
-    fun getEt(): EditText? {
+    fun getEt(): EditText {
         return etContent
     }
 
     fun setListener(listener: OnFormClickListener?) {
         this.listener = listener
         btnAction.visibility = VISIBLE
+        btnAction.setOnClickListener {
+            listener?.onClick()
+        }
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
@@ -70,9 +73,6 @@ class FormRow : ConstraintLayout {
         tvTitle = mView.findViewById(R.id.tv_title)
         etContent = mView.findViewById(R.id.et_content)
         btnAction = mView.findViewById(R.id.btn_action)
-        btnAction.setOnClickListener {
-            listener?.onClick()
-        }
         val a = context.obtainStyledAttributes(attrs, R.styleable.FormRow)
         tvTitle.setText(a.getString(R.styleable.FormRow_title))
         val hint = a.getString(R.styleable.FormRow_hint)

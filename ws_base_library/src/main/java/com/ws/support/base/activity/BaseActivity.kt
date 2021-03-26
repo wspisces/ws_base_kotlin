@@ -198,7 +198,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 公用组件：进度条
      */
-    protected fun initProgress(msg: String?) {
+    protected fun initProgress(msg: String) {
         try {
             if (null == progressDialog) {
                 progressDialog = MyProgressDialogFragment.newInstance(msg)

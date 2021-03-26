@@ -16,13 +16,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.ws.base.R
 import com.ws.base.databinding.ActivityDataBaseBinding
+import com.ws.component.dialog.MyProgressDialog
+import com.ws.support.utils.ToastUtils
 import com.ws.support.widget.MyProgressDialogFragment
 import com.ws.support.widget.MyProgressDialogFragment.Companion.newInstance
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.Consumer
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.schedule
 
 /**
  * 描述信息
@@ -33,16 +37,14 @@ import java.util.concurrent.TimeUnit
  */
 @Suppress("DEPRECATION")
 abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivity() {
-    protected var baseBinding: ActivityDataBaseBinding? = null
-    protected var mContext: Context? = null
-    protected var progressDialog: MyProgressDialogFragment? = null
-    protected var mActivity: AppCompatActivity? = null
-    var toast: Toast? = null
-    var toatTv: TextView? = null
-    protected fun initContent(): T? {
+    protected lateinit var baseBinding: ActivityDataBaseBinding
+    protected lateinit var mContext: Context
+    protected var progressDialog: MyProgressDialog? = null
+    protected lateinit var mActivity: AppCompatActivity
+    fun initContent(): T? {
         val layoutId = layoutId
         return if (layoutId != 0) {
-            DataBindingUtil.inflate(layoutInflater, layoutId, baseBinding!!.fl, true)
+            DataBindingUtil.inflate(layoutInflater, layoutId, baseBinding.fl, true)
         } else null
     }
 
@@ -51,41 +53,46 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
         mContext = this
     }
 
-    protected val isFullScreen: Boolean
-        get() = false
+    /**
+     *是否全屏
+     */
+    open fun isFullScreen(): Boolean {
+        return false
+    }
+
 
     /**
      * 隐藏Toolbar
      */
-    protected fun hideToolbar(): Boolean {
+    open fun hideToolbar(): Boolean {
         return false
     }
 
     /**
      * 是否显示返回按钮
      */
-    protected fun enableNavigation(): Boolean {
+    open fun enableNavigation(): Boolean {
         return true
     }
 
     /**
      * 设置Toolbar标题
      */
-    protected abstract val toolbarTite: String?
+    abstract val toolbarTite: String?
 
     /**
      * 初始化Toolbar
      */
     private fun initToolbar() {
-        if (isFullScreen || hideToolbar()) {
-            baseBinding!!.toolbar.visibility = View.GONE
+        if (isFullScreen() || hideToolbar()) {
+            baseBinding.toolbar.visibility = View.GONE
             return
         }
-        baseBinding!!.toolbar.title = ""
+        baseBinding.toolbar.title = ""
         if (enableNavigation()) {
-            baseBinding!!.toolbar.setNavigationIcon(R.drawable.ic_back_black)
+            baseBinding.toolbar.setNavigationIcon(R.drawable.ic_back_white)
         }
-        setSupportActionBar(baseBinding!!.toolbar)
+        setSupportActionBar(baseBinding.toolbar)
         setTitle(toolbarTite)
     }
 
@@ -94,7 +101,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
      */
     protected fun setTitle(title: String?) {
         if (title != null) {
-            baseBinding!!.title.text = title
+            baseBinding.title.text = title
         }
     }
 
@@ -115,27 +122,15 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
      *
      * @param bindView 界面绑定对象
      */
-    protected abstract fun initView(bindView: ActivityDataBaseBinding?, binding: T?)
-    @SuppressLint("CheckResult")
-    protected fun deleyActionOnMain(back: Consumer<Long?>?) {
-        deleyAction(DELAY_TIME, AndroidSchedulers.mainThread(), back)
-    }
+    protected abstract fun initView(bindView: ActivityDataBaseBinding, binding: T?)
 
     @SuppressLint("CheckResult")
-    protected fun deleyActionOnMain(time: Long, back: Consumer<Long?>?) {
+    protected fun deleyActionOnMain(time: Long = DELAY_TIME, back: Consumer<Long?>?) {
         deleyAction(time, AndroidSchedulers.mainThread(), back)
     }
 
     @SuppressLint("CheckResult")
-    protected fun deleyAction(scheduler: Scheduler?, back: Consumer<Long?>?) {
-        Observable.timer(DELAY_TIME, TimeUnit.MILLISECONDS)
-                .subscribeOn(scheduler)
-                .observeOn(scheduler)
-                .subscribe(back)
-    }
-
-    @SuppressLint("CheckResult")
-    protected fun deleyAction(time: Long, scheduler: Scheduler?, back: Consumer<Long?>?) {
+    protected fun deleyAction(time: Long = DELAY_TIME, scheduler: Scheduler?, back: Consumer<Long?>?) {
         Observable.timer(time, TimeUnit.MILLISECONDS)
                 .subscribeOn(scheduler)
                 .observeOn(scheduler)
@@ -145,23 +140,41 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
     /**
      * 公用组件：进度条
      */
-    protected fun initProgress(msg: String?) {
+    @JvmOverloads
+    protected fun initProgress(msg: String = "", delayTime: Int = 0) {
         try {
             if (null == progressDialog) {
-                progressDialog = newInstance(msg)
+                progressDialog = MyProgressDialog.createProblemDialog(mContext, msg)
             }
-            progressDialog!!.setMessage(msg!!)
-            progressDialog!!.show(supportFragmentManager, MyProgressDialogFragment::class.java.simpleName)
+            progressDialog!!.setMessage(msg)
+            progressDialog!!.show()
+            if (delayTime > 0) {
+                dismissProgress(delayTime)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    protected fun dismissProgress(second: Int) {
+        Timer().schedule(second.toLong() * 1000) {
+            runOnUiThread {
+                if (!isFinishing && null != progressDialog && progressDialog!!.isShowing)
+                    ToastUtils.debug("超时关闭等待框")
+                hideProgress()
+            }
+        }
+        //deleyActionOnMain(second.toLong() * 1000, { hideProgress() })
     }
 
     /**
      * 公用组件：关闭进度条
      */
     protected fun hideProgress() {
-        if (!isFinishing && null != progressDialog && progressDialog!!.dialog != null && progressDialog!!.dialog!!.isShowing) {
+        if (!isFinishing && null != progressDialog && progressDialog!!.isShowing
+        //&& progressDialog!!.dialog != null
+        // && progressDialog!!.dialog!!.isShowing
+        ) {
             progressDialog!!.dismiss()
         }
     }
@@ -247,7 +260,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
         get() = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (isFullScreen) {
+        if (isFullScreen()) {
             //设置无标题
             requestWindowFeature(Window.FEATURE_NO_TITLE)
             //设置全屏
@@ -265,21 +278,9 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
         baseBinding = DataBindingUtil.setContentView(this, R.layout.activity_data_base)
         initData_()
         initToolbar()
-        initToast()
         initView(baseBinding, initContent())
     }
 
-    private fun initToast() {
-        //获取样式布局
-        val toastRoot = LayoutInflater.from(this).inflate(R.layout.layout_toast, null)
-        //声明Toast
-        toast = Toast(this)
-        //给Toast设置布局
-        toastRoot.also { toast!!.view = it }
-        //设置布局文件里的控件属性
-        toatTv = toastRoot.findViewById(R.id.tv_toast)
-        toast!!.duration = Toast.LENGTH_SHORT
-    }
 
     /**
      * 公用组件： Toast
@@ -289,8 +290,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
         if (TextUtils.isEmpty(message)) {
             return
         }
-        toatTv!!.text = message
-        toast!!.show()
+        ToastUtils.normal(message!!)
     }
 
     /**
@@ -301,8 +301,7 @@ abstract class BaseViewDataBindActivity<T : ViewDataBinding?> : AppCompatActivit
         if (message == 0) {
             return
         }
-        toatTv!!.setText(message)
-        toast!!.show()
+        ToastUtils.normal(message)
     }
 
     companion object {

@@ -54,7 +54,7 @@ abstract class BaseFragment : Fragment() {
                 mDialog!!.isCancelable = true
             }
             mDialog!!.setMessage(msg)
-            mDialog!!.show(fragmentManager)
+            mDialog!!.show(requireFragmentManager())
         } catch (ignored: Exception) {
         }
     }
@@ -72,11 +72,11 @@ abstract class BaseFragment : Fragment() {
     /**
      * 公用组件： Toast
      */
-    fun showToast(message: String?) {
+    fun showToast(message: String) {
         if (TextUtils.isEmpty(message)) {
             return
         }
-        ToastUtils.normal(message!!)
+        ToastUtils.normal(message)
     }
 
     //跳转

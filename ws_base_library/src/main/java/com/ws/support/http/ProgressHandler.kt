@@ -37,7 +37,7 @@ class ProgressHandler : Handler {
         this.cancelable = cancelable
     }
 
-    private fun initProgressDialog(message: String?) {
+    private fun initProgressDialog(message: String) {
         if (pd == null) {
             pd = MyProgressDialog.createProgrssDialog(mContext)
             pd?.setCancelable(cancelable)
@@ -64,7 +64,7 @@ class ProgressHandler : Handler {
     override fun handleMessage(msg: Message) {
         super.handleMessage(msg)
         when (msg.what) {
-            SHOW_PROGRESS -> initProgressDialog(msg.data.getString("message"))
+            SHOW_PROGRESS -> initProgressDialog(msg.data.getString("message",""))
             DISMISS_PROGRESS -> dismissProgressDialog()
         }
     }

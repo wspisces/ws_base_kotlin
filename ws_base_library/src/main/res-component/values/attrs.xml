@@ -13,13 +13,16 @@
     <attr name="fgColor" format="color" />
     <attr name="percent" format="float" />
     <attr name="startAngle" format="float" />
+    <attr name="leading" format="reference" />
     <declare-styleable name="FormRowWithImage">
         <attr name="title" />
+        <attr name="content" />
         <attr name="style" />
         <attr name="hint" />
         <attr name="maxlengh" />
         <attr name="pwd" />
-        <attr name="leading" format="reference" />
+        <attr name="android:imeOptions" />
+        <attr name="leading"/>
     </declare-styleable>
     <declare-styleable name="EmptyView">
         <attr name="msg" format="string" />
@@ -33,6 +36,11 @@
         <attr name="pwd" />
         <attr name="input" />
     </declare-styleable>
+    <declare-styleable name="AgreementRow">
+        <attr name="content" />
+        <attr name="checked" format="boolean" />
+    </declare-styleable>
+
     <declare-styleable name="FormColum">
         <attr name="title" />
         <attr name="style" />
@@ -71,5 +79,13 @@
         <attr name="box_bg_focus" format="reference" />
         <attr name="box_bg_normal" format="reference" />
         <attr name="inputType" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="PasswordEditText">
+        <attr name="pwdstr" format="string"/>
+        <attr name="hint" />
+        <attr name="maxlengh" />
+        <attr name="android:imeOptions" />
+        <attr name="leading" />
     </declare-styleable>
 </resources>

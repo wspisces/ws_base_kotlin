@@ -33,12 +33,10 @@ class MyProgressDialogFragment : DialogFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.dialog_progress_fragment, container, false)
         progressBar = view.findViewById(R.id.progress)
-        this.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(activity!!, R.color.colorPrimary), PorterDuff.Mode.MULTIPLY)
+        this.progressBar.indeterminateDrawable.setColorFilter(ContextCompat.getColor(requireActivity(), R.color.colorPrimary), PorterDuff.Mode.MULTIPLY)
         tv = view.findViewById(R.id.tv_status)
         tv.text = msg
-        if (msg!!.isEmpty()) {
-            tv.visibility = View.GONE
-        } else {
+        msg.let {
             tv.visibility = View.VISIBLE
         }
         return view
@@ -65,7 +63,7 @@ class MyProgressDialogFragment : DialogFragment() {
             //设置宽度
             val dm = DisplayMetrics()
             requireActivity().windowManager.defaultDisplay.getMetrics(dm)
-            dialog.window?.setLayout((dm.widthPixels * 0.7).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
+            dialog.window?.setLayout((dm.widthPixels * 0.5).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
         }
     }
 
@@ -91,12 +89,12 @@ class MyProgressDialogFragment : DialogFragment() {
 
     }
 
-    fun show(manager: FragmentManager?) {
-        super.show(manager!!, MyProgressDialogFragment::class.java.simpleName)
+    fun show(manager: FragmentManager) {
+        super.show(manager, MyProgressDialogFragment::class.java.simpleName)
     }
 
     companion object {
-        fun newInstance(msg: String?): MyProgressDialogFragment {
+        fun newInstance(msg: String): MyProgressDialogFragment {
             val dialog = MyProgressDialogFragment()
             dialog.msg = msg
             return dialog

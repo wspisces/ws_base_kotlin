@@ -111,17 +111,15 @@ object NetWorkUtils {
         } else {
             @SuppressLint("MissingPermission")
             val info = connectivity.allNetworkInfo
-            if (info != null) {
-                for (i in info.indices) {
-                    if (info[i].state == NetworkInfo.State.CONNECTED) {
-                        val netWorkInfo = info[i]
-                        if (netWorkInfo.type == ConnectivityManager.TYPE_WIFI) {
-                            return true
-                        } else if (netWorkInfo.type == ConnectivityManager.TYPE_MOBILE) {
-                            return true
-                        } else if (netWorkInfo.type == ConnectivityManager.TYPE_ETHERNET) {
-                            return true
-                        }
+            for (i in info.indices) {
+                if (info[i].state == NetworkInfo.State.CONNECTED) {
+                    val netWorkInfo = info[i]
+                    if (netWorkInfo.type == ConnectivityManager.TYPE_WIFI) {
+                        return true
+                    } else if (netWorkInfo.type == ConnectivityManager.TYPE_MOBILE) {
+                        return true
+                    } else if (netWorkInfo.type == ConnectivityManager.TYPE_ETHERNET) {
+                        return true
                     }
                 }
             }
@@ -129,7 +127,7 @@ object NetWorkUtils {
         return false
     }
 
-    fun getIP(context: Context): String? {
+    fun getIP(): String? {
         try {
             val en = NetworkInterface.getNetworkInterfaces()
             while (en.hasMoreElements()) {

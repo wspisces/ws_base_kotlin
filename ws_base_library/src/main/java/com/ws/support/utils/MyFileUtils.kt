@@ -34,17 +34,15 @@ object MyFileUtils {
     fun getRootDirectory(): String {
         try {
             val file = File("/")
-            if (null != file) {
-                if (file.isDirectory) {
-                    val files = file.listFiles()
-                    for (i in files.indices) {
-                        if (null != files[i]) {
-                            Logger.i("path=" + files[i]!!.path)
-                        }
+            if (file.isDirectory) {
+                val files = file.listFiles()
+                for (i in files.indices) {
+                    if (null != files[i]) {
+                        Logger.i("path=" + files[i]!!.path)
                     }
-                } else {
-                    Logger.i("path=" + "/")
                 }
+            } else {
+                Logger.i("path=" + "/")
             }
         } catch (e: Exception) {
             Logger.i("file is null")

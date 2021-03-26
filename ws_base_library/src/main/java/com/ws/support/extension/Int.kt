@@ -12,6 +12,6 @@ import com.ws.support.base.BaseApplication
  * 修改人：ws
  */
 fun Int.showToast(duration: Int = Toast.LENGTH_SHORT) {
-    Toast.makeText(BaseApplication.context, this, duration).show()
+    Toast.makeText(BaseApplication.mContext, this, duration).show()
 }
 

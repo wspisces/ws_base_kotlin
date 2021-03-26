@@ -17,7 +17,7 @@ import java.util.regex.Pattern
  */
 //region extension 自定义扩展
 fun String.showToast(duration:Int = Toast.LENGTH_SHORT){
-    Toast.makeText(BaseApplication.context,this,duration).show()
+    Toast.makeText(BaseApplication.mContext,this,duration).show()
 }
 
 fun String.isMobileNO(): Boolean {

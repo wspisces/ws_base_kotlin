@@ -64,14 +64,15 @@ abstract class BaseBindingFragment<DB : ViewDataBinding?> : Fragment() {
     /**
      * 公用组件：进度条
      */
-    protected fun initProgress(msg: String?) {
+    protected fun initProgress(msg: String) {
         try {
             if (null == mDialog) {
                 mDialog = newInstance(msg)
                 mDialog!!.isCancelable = true
             }
+
+            mDialog!!.show(requireFragmentManager())
             mDialog!!.setMessage(msg!!)
-            mDialog!!.show(fragmentManager)
         } catch (ignored: Exception) {
         }
     }
@@ -111,12 +112,12 @@ abstract class BaseBindingFragment<DB : ViewDataBinding?> : Fragment() {
 
     protected fun jumptoActivity(cls: Class<*>?, bundle: Bundle?) {
         gotoActivity(cls, bundle)
-        activity!!.finish()
+        requireActivity().finish()
     }
 
     protected fun jumptoActivity(cls: Class<*>?) {
         gotoActivity(cls)
-        activity!!.finish()
+        requireActivity().finish()
     }
 
     @SuppressLint("CheckResult")

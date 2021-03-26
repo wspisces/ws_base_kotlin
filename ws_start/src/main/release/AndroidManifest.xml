@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ws.start">
+
+    <application
+        android:theme="@style/Theme.BaseLibrary">
+        <activity android:name=".SplashActivity"/>
+    </application>
+
+</manifest>

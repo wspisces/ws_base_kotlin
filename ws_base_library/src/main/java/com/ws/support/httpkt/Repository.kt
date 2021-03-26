@@ -13,7 +13,7 @@ object Repository {
      * 预处理数据(错误)
      * @param context 跳至登录页的上下文
      */
-    private suspend fun <T : BaseBean> preprocessData(baseBean: T, context: Context? = null): T =
+    private suspend fun <T : BaseBean> preprocessData(baseBean: T): T =
             if (baseBean.errorCode == 0) {// 成功
                 // 返回数据
                 baseBean
@@ -31,7 +31,7 @@ object Repository {
      */
     suspend fun getWXArticle(context: Context? = null): ArticleData =
             NetworkService.api.getWXArticle().let {
-                preprocessData(it, context)
+                preprocessData(it)
             }
 }
 /**

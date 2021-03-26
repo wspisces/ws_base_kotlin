@@ -3,14 +3,19 @@
 package com.ws.support.http
 
 import android.annotation.SuppressLint
+import android.util.Log
 import com.orhanobut.logger.Logger
 import com.ws.support.utils.SharePreferUtil
 import io.reactivex.plugins.RxJavaPlugins
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import java.security.SecureRandom
 import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
+import javax.net.ssl.HttpsURLConnection
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
 object OkHttpUtil {
@@ -30,6 +35,8 @@ object OkHttpUtil {
         }
     }
     private const val DEFAULT_TIMEOUT = 30
+
+
 
     /**
      * 拦截器,添加头部
@@ -56,6 +63,7 @@ object OkHttpUtil {
                 } //               .sslSocketFactory(new SSLSocketFactoryCompat(trustAllCert), trustAllCert)
                 .build()
         RxJavaPlugins.setErrorHandler { throwable: Throwable? -> Logger.e(throwable, "RxJavaError") }
+
         return httpClient
     }
 }

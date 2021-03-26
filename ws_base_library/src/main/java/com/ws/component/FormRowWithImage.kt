@@ -1,18 +1,24 @@
 package com.ws.component
 
 import android.content.Context
+import android.text.Editable
 import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
+import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.BindingAdapter
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
 import com.ws.base.R
 
 /**
@@ -27,10 +33,10 @@ class FormRowWithImage : ConstraintLayout {
     private lateinit var ivUser: ImageView
     private lateinit var ivLeading: ImageView
     private lateinit var tvTitle: TextView
-    private lateinit var etContent: EditText
+    private lateinit var etContent: ClearEditText
     private var listener: OnFormClickListener? = null
 
-    constructor(context: Context?) : super(context!!) {}
+    constructor(context: Context?) : super(context!!)
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
         init(context, attrs)
     }
@@ -39,17 +45,20 @@ class FormRowWithImage : ConstraintLayout {
         init(context, attrs)
     }
 
-    fun getUserImage(): ImageView? {
+    fun getUserImage(): ImageView {
         return ivUser
     }
 
-    fun getEt(): EditText? {
+    fun getEt(): EditText {
         return etContent
     }
 
     fun setListener(listener: OnFormClickListener?) {
         this.listener = listener
         btnAction.visibility = VISIBLE
+        btnAction.setOnClickListener {
+            listener?.onClick()
+        }
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
@@ -61,37 +70,56 @@ class FormRowWithImage : ConstraintLayout {
         tvTitle = mView.findViewById(R.id.tv_title)
         etContent = mView.findViewById(R.id.et_content)
         btnAction = mView.findViewById(R.id.btn_action)
-        btnAction.setOnClickListener {
-            listener?.onClick()
-        }
+
         val a = context.obtainStyledAttributes(attrs, R.styleable.FormRowWithImage)
-        tvTitle.setText(a.getString(R.styleable.FormRowWithImage_title))
+        tvTitle.text = a.getString(R.styleable.FormRowWithImage_title)
         val hint = a.getString(R.styleable.FormRowWithImage_hint)
+        val content = a.getString(R.styleable.FormRowWithImage_content)
         val leadingImage = a.getResourceId(R.styleable.FormRowWithImage_leading, 0)
         ivLeading.setImageResource(leadingImage)
-        etContent.setHint(hint)
+        etContent.hint = hint
+
+        val imeOptions = a.getInt(R.styleable.FormRowWithImage_android_imeOptions, -1)
+        if (imeOptions >= 0)
+            etContent.imeOptions = imeOptions
+        etContent.setText(content)
+        bidnglistener?.onChange()
         val type = a.getInt(R.styleable.FormRowWithImage_style, 0)
-        ivUser.setVisibility(GONE)
+        ivUser.visibility = GONE
         if (type == 0) { //默认输入
             val max = a.getInt(R.styleable.FormRowWithImage_maxlengh, -1) //最大输入字符
             val isPwd = a.getBoolean(R.styleable.FormRowWithImage_pwd, false)
             ivArrow.visibility = INVISIBLE
-            etContent.setEnabled(true)
-            if (max > 0) etContent.setFilters(arrayOf<InputFilter>(LengthFilter(max)))
+            etContent.isEnabled = true
+            if (max > 0) etContent.filters = arrayOf<InputFilter>(LengthFilter(max))
             if (isPwd) {
                 //etContent.setInputType(InputType.TYPE_TEXT_VARIATION_PASSWORD|InputType.TYPE_CLASS_TEXT);
-                etContent.setTransformationMethod(PasswordTransformationMethod.getInstance())
+                etContent.transformationMethod = PasswordTransformationMethod.getInstance()
             }
         } else if (type == 1) { //头像选择
-            ivUser.setVisibility(VISIBLE)
-            etContent.setEnabled(false)
+            ivUser.visibility = VISIBLE
+            etContent.isEnabled = false
         } else if (type == 2) { //弹窗
-            etContent.setEnabled(false)
+            etContent.isEnabled = false
         } else if (type == 3) { //信息展示
-            etContent.setEnabled(false)
+            etContent.isEnabled = false
             ivArrow.visibility = INVISIBLE
         }
         a.recycle()
+        etContent.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+                bidnglistener?.onChange()
+            }
+
+        })
     }
 
     fun getContent(): String {
@@ -101,10 +129,35 @@ class FormRowWithImage : ConstraintLayout {
     //设置内容
     fun setContent(content: String?) {
         etContent.setText(content)
+        bidnglistener?.onChange()
     }
 
     //提示文字
     fun setHintText(hint: String?) {
         etContent.hint = hint
+    }
+
+    var bidnglistener: InverseBindingListener? = null
+}
+
+object FormRowWithImageBindingAdapters {
+
+    @BindingAdapter(value = ["content"], requireAll = false)
+    @JvmStatic
+    fun setCotnent(view: FormRowWithImage, value: String) {
+        view.setContent(value)
+    }
+
+    @InverseBindingAdapter(attribute = "content", event = "contentAttrChanged")
+    @JvmStatic
+    fun getContent(view: FormRowWithImage): String {
+        val text = view.getEt().text
+        return text.toString()
+    }
+
+    @BindingAdapter(value = ["contentAttrChanged"], requireAll = false)
+    @JvmStatic
+    fun setListener(view: FormRowWithImage, listener: InverseBindingListener?) {
+        view.bidnglistener = listener
     }
 }

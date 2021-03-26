@@ -1,5 +1,6 @@
 package com.ws.support.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Rect
@@ -48,12 +49,13 @@ class ScreenUtils private constructor() {
          * @param context
          * @return
          */
+        @SuppressLint("PrivateApi")
         fun getStatusHeight(context: Context): Int {
             var statusHeight = -1
             try {
                 val clazz = Class.forName("com.android.internal.R\$dimen")
                 val `object` = clazz.newInstance()
-                val height = clazz.getField("status_bar_height")[`object`].toString().toInt()
+                val height = "${clazz.getField("status_bar_height")[`object`]}".toInt()
                 statusHeight = context.resources.getDimensionPixelSize(height)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -74,8 +76,7 @@ class ScreenUtils private constructor() {
             val bmp = view.drawingCache
             val width = getScreenWidth(activity)
             val height = getScreenHeight(activity)
-            var bp: Bitmap? = null
-            bp = Bitmap.createBitmap(bmp, 0, 0, width, height)
+            val bp: Bitmap? = Bitmap.createBitmap(bmp, 0, 0, width, height)
             view.destroyDrawingCache()
             return bp
         }
@@ -96,8 +97,7 @@ class ScreenUtils private constructor() {
             val statusBarHeight = frame.top
             val width = getScreenWidth(activity)
             val height = getScreenHeight(activity)
-            var bp: Bitmap? = null
-            bp = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height
+            val bp: Bitmap? = Bitmap.createBitmap(bmp, 0, statusBarHeight, width, height
                     - statusBarHeight)
             view.destroyDrawingCache()
             return bp
