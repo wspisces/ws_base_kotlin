@@ -87,5 +87,6 @@
         <attr name="maxlengh" />
         <attr name="android:imeOptions" />
         <attr name="leading" />
+        <attr name="style" />
     </declare-styleable>
 </resources>

@@ -12,6 +12,7 @@ import com.ws.start.databinding.ActivityLoginBinding
 import com.ws.start.viewmodel.LoginModel
 import com.ws.support.base.activity.WebActivity
 import com.ws.support.extension.LoadState
+import com.ws.support.extension.clickWithTrigger
 import com.ws.support.utils.ToastUtils
 import com.ws.support.base.activity.BaseViewDataBindActivity as ActivityBaseViewDataBindActivity
 
@@ -71,7 +72,7 @@ class LoginActivity(override val toolbarTite: String? = "登录", override val l
             Logger.i(it)
         })
 
-        binding.btnLogin.setOnClickListener {
+        binding.btnLogin.clickWithTrigger {
             loginModel.login()
         }
         binding.formPwd.getEt().setOnEditorActionListener { _, i, _ ->

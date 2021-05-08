@@ -19,6 +19,7 @@ import com.ws.support.utils.StringUtils
 class WebActivity private constructor(override val toolbarTite: String? = "网页", override val layoutId: Int = R.layout.activity_web) : BaseViewBindActivity() {
 
     lateinit var binding: ActivityWebBinding
+    constructor() : this("网页",R.layout.activity_web) {}
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initView(bindView: ActivityBaseBinding) {
@@ -142,6 +143,7 @@ class WebActivity private constructor(override val toolbarTite: String? = "网�
         baseBinding.title.text = title
         binding.wv.loadUrl(url!!)
     }
+
 
     companion object {
         fun startActivity(content: Context, title: String?, url: String?) {

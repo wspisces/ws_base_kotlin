@@ -34,7 +34,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/cn_len_two"
-            android:layout_marginBottom="50dp"
             android:text="@string/app_name"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@id/form_account"
@@ -42,20 +41,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/iv_logo" />
 
-        <com.ws.component.PasswordEditText
-            android:layout_width="0dp"
-            android:layout_height="@dimen/row_height"
-            app:pwdstr="@={model.account}"
-            app:hint="请输入账号"
-            app:layout_constraintEnd_toEndOf="@+id/form_account"
-            app:layout_constraintStart_toStartOf="@+id/form_account"
-            app:layout_constraintTop_toTopOf="parent"
-            app:leading="@drawable/ic_account"
-            app:maxlengh="16" />
-
         <com.ws.component.FormRowWithImage
-            android:id="@+id/form_account"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="@dimen/row_height"
             android:layout_marginTop="@dimen/cn_len_two"
             app:content="@={model.account}"
@@ -69,9 +57,11 @@
             app:maxlengh="16"
             app:style="0" />
 
+
+
         <com.ws.component.FormRowWithImage
-            android:id="@+id/form_pwd"
             android:layout_width="0dp"
+            android:visibility="gone"
             android:layout_height="@dimen/row_height"
             android:layout_marginTop="@dimen/cn_len_one"
             android:imeOptions="actionDone"
@@ -86,6 +76,39 @@
             app:maxlengh="16"
             app:pwd="true"
             app:style="0" />
+
+
+        <com.ws.component.PasswordEditText
+            android:id="@+id/form_account"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/row_height"
+            android:layout_marginTop="@dimen/cn_len_eight"
+            app:pwdstr="@={model.account}"
+            app:hint="请输入账号"
+            app:layout_constraintBottom_toTopOf="@id/form_pwd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_app"
+            app:layout_constraintWidth_percent="0.8"
+            app:leading="@drawable/ic_account"
+            app:style="1"
+            app:maxlengh="16" />
+
+
+        <com.ws.component.PasswordEditText
+            android:id="@+id/form_pwd"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/row_height"
+            app:pwdstr="@={model.pwd}"
+            app:hint="请输入密码"
+            app:layout_constraintBottom_toTopOf="@id/agreement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/form_account"
+            app:layout_constraintWidth_percent="0.8"
+            app:leading="@drawable/ic_pwd"
+            app:maxlengh="16" />
+
 
         <com.ws.component.AgreementRow
             android:id="@+id/agreement"

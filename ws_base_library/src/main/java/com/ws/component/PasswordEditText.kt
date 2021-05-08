@@ -102,6 +102,15 @@ class PasswordEditText : ConstraintLayout {
         val leadingImage = a.getResourceId(R.styleable.PasswordEditText_leading, R.drawable.ic_account)
         ivLeading.setImageResource(leadingImage)
 
+        val style= a.getInt(R.styleable.PasswordEditText_style,0)
+        //默认0,密码输入
+        if (style != 0){
+            ibtnToggle.visibility = INVISIBLE
+            et.inputType = InputType.TYPE_CLASS_TEXT
+            et.transformationMethod = null
+        }
+
+
         a.recycle()
         et.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {

@@ -43,6 +43,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    //这里就是打包jar包
+    task createLibrary(type: Copy) {
+        //删除旧的jar包
+        delete 'build/libs/ws_base_library_1.0.1.jar'
+        //原地址
+        from('build/intermediates/aar_main_jar/release/')
+        //导出jar包的地址
+        into('build/libs/')
+        //包含的jar包
+        include('classes.jar')
+        //重命名jar包为mysdk
+        rename ('classes.jar', 'ws_base_library_1.0.1.jar')
+    }
+    createLibrary.dependsOn(build)
 }
 
 dependencies {
