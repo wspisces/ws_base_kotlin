@@ -1,6 +1,5 @@
 package com.ws.support.extension
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ws.support.httpkt.ExceptionUtil

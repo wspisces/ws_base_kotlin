@@ -1,4 +1,4 @@
-@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
 
 package com.ws.support.utils
 
@@ -163,7 +163,7 @@ object MyFileUtils {
      */
     fun isSDCARDMounted(): Boolean {
         val status = Environment.getExternalStorageState()
-        return if (Environment.MEDIA_MOUNTED == status) true else false
+        return Environment.MEDIA_MOUNTED == status
     }
 
     /**
@@ -214,7 +214,7 @@ object MyFileUtils {
      * @return
      */
     fun getDiskFileDir(context: Context): String? {
-        var filePath: String? = null
+        var filePath: String?
         filePath = if (Environment.MEDIA_MOUNTED == Environment.getExternalStorageState() || !Environment.isExternalStorageRemovable()) {
             context.getExternalFilesDir(null)!!.path
         } else {
@@ -255,7 +255,7 @@ object MyFileUtils {
     fun checkSuffix(fileName: String?, fileSuffix: Array<String?>): Boolean {
         for (suffix in fileSuffix) {
             if (fileName != null) {
-                if (fileName.toLowerCase().endsWith(suffix!!)) {
+                if (fileName.toLowerCase(Locale.getDefault()).endsWith(suffix!!)) {
                     return true
                 }
             }

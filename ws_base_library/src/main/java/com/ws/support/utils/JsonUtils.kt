@@ -1,3 +1,5 @@
+@file:Suppress("NAME_SHADOWING")
+
 package com.ws.support.utils
 
 import android.text.TextUtils
@@ -86,7 +88,7 @@ object JsonUtils {
         if (isEmpty(datePattern)) datePattern = DEFAULT_DATE_PATTERN
         builder.setDateFormat(datePattern)
         if (excludesFieldsWithoutExpose) builder.excludeFieldsWithoutExposeAnnotation()
-        var result = EMPTY
+        val result: String
         val gson = builder.create()
         result = try {
             if (targetType != null) {

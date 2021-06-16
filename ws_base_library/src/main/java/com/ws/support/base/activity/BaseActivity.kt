@@ -203,7 +203,7 @@ abstract class BaseActivity : AppCompatActivity() {
             if (null == progressDialog) {
                 progressDialog = MyProgressDialogFragment.newInstance(msg)
             }
-            progressDialog!!.setMessage(msg!!)
+            progressDialog!!.setMessage(msg)
             progressDialog!!.show(supportFragmentManager, MyProgressDialogFragment::class.java.simpleName)
         } catch (e: Exception) {
             e.printStackTrace()

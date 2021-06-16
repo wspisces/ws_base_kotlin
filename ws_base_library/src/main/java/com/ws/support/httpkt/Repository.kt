@@ -1,8 +1,6 @@
 package com.ws.support.httpkt
 
 
-import android.content.Context
-
 /**
  * 接口资源
  * @author ssq
@@ -29,7 +27,7 @@ object Repository {
      *
      * @param context 跳至登录页的上下文
      */
-    suspend fun getWXArticle(context: Context? = null): ArticleData =
+    suspend fun getWXArticle(): ArticleData =
             NetworkService.api.getWXArticle().let {
                 preprocessData(it)
             }

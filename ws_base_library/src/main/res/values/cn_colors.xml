@@ -8,7 +8,7 @@
     <color name="colorPrimary30">#4D42A5F5</color>
     <color name="colorPrimaryLight">#4D5CADFF</color>
     <color name="colorPrimaryDark">#2c8ddc</color>
-    <color name="colorAccent">#333333</color>
+    <color name="colorAccent">#5CADFF</color>
     <color name="alert">#FF9800</color>
     <color name="alertDark">#F57C00</color>
     <color name="alertLight">#FFE0B2</color>

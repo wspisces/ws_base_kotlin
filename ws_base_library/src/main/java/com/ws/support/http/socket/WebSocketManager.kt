@@ -1,6 +1,7 @@
 package com.ws.support.http.socket
 
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import com.orhanobut.logger.Logger
 import com.ws.support.utils.StringUtils
@@ -28,7 +29,7 @@ class WebSocketManager private constructor() {
     private var sendTime = 0L
 
     // 发送心跳包
-    private var mHandler: Handler? = Handler()
+    private var mHandler: Handler? = Handler(Looper.myLooper()!!)
     private val WSURL = "你的Websocket地址"
     fun init(message: IReceiveMessage?) {
         client = OkHttpClient.Builder()
@@ -49,7 +50,7 @@ class WebSocketManager private constructor() {
             Logger.i("WebSocket 已经连接！")
             return
         }
-        client!!.newWebSocket(request, createListener())
+        client!!.newWebSocket(request!!, createListener())
     }
 
     /**
@@ -128,7 +129,7 @@ class WebSocketManager private constructor() {
                 super.onOpen(webSocket, response)
                 Logger.i("WebSocket 打开:$response")
                 mWebSocket = webSocket
-                isConnect = response.code() == 101
+                isConnect = response.code == 101
                 if (!isConnect) {
                     reconnect()
                 } else {
@@ -183,7 +184,7 @@ class WebSocketManager private constructor() {
             override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
                 super.onFailure(webSocket, t, response)
                 if (response != null) {
-                    Logger.i("WebSocket 连接失败：" + response.message())
+                    Logger.i("WebSocket 连接失败：" + response.message)
                 }
                 Logger.i("WebSocket 连接失败异常原因：" + t.message)
                 isConnect = false

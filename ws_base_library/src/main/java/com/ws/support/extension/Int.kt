@@ -1,6 +1,5 @@
 package com.ws.support.extension
 
-import android.content.Context
 import android.widget.Toast
 import com.ws.support.base.BaseApplication
 

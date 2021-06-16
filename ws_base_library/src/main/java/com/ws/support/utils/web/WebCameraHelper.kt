@@ -38,7 +38,7 @@ class WebCameraHelper {
         alertDialog.setOnCancelListener(ReOnCancelListener())
         alertDialog.setTitle("选择")
         alertDialog.setItems(arrayOf<CharSequence>("相机", "相册")
-        ) { dialog, which ->
+        ) { _, which ->
             if (which == 0) {
                 if (ContextCompat.checkSelfPermission(act,
                                 Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {

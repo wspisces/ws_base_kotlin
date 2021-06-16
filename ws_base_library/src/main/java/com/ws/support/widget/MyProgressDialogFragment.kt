@@ -15,7 +15,6 @@ import androidx.core.widget.ContentLoadingProgressBar
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ws.base.R
-import java.util.*
 
 /**
  * 等待窗口

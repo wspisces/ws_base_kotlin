@@ -5,8 +5,6 @@ import android.text.InputFilter
 import android.text.InputFilter.LengthFilter
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
-import android.view.View.OnClickListener
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView

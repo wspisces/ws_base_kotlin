@@ -2,7 +2,9 @@ package com.ws.support.http_coroutines
 
 import com.google.gson.Gson
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 
 /**
@@ -19,8 +21,8 @@ data class BaseResp<T>(
 
 fun createRquestBody(params: Map<*, *>): RequestBody {
     // JsonUtils.toJson(params)
-    return RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
-            Gson().toJson(params))
+    return Gson().toJson(params)
+        .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 }
 
 /*数据解析扩展函数*/

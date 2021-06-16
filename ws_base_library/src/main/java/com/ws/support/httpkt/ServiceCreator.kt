@@ -1,11 +1,7 @@
 package com.ws.support.httpkt
 
-import android.util.Log
-import com.orhanobut.logger.Logger
 import com.ws.base.BuildConfig
-import com.ws.support.base.BaseApplication
 import com.ws.support.http.LogInterceptor
-import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -13,7 +9,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.RuntimeException
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException

@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.ws.support.base.mvvm
 
 import java.lang.reflect.*
@@ -14,7 +16,7 @@ object TUtil {
                 val superClass = `object`.javaClass.genericSuperclass
                 val type = (superClass as ParameterizedType).actualTypeArguments[i]
                 val clazz = getRawType(type)
-                return clazz.newInstance() as T
+                return clazz.newInstance() as T?
             } catch (e: InstantiationException) {
                 e.printStackTrace()
             } catch (e: IllegalAccessException) {

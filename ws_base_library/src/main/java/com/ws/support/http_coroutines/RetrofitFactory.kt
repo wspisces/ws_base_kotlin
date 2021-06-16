@@ -6,9 +6,11 @@ import com.orhanobut.logger.Logger
 import com.ws.base.BuildConfig
 import io.reactivex.plugins.RxJavaPlugins
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -120,8 +122,8 @@ class RetrofitFactory private constructor() {
 
     fun createRquestBody(params: Map<*, *>): RequestBody {
         // JsonUtils.toJson(params)
-        return RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
-                Gson().toJson(params))
+        return Gson().toJson(params)
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
     }
 
     override fun equals(other: Any?): Boolean {

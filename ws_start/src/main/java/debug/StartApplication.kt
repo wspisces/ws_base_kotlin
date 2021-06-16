@@ -7,6 +7,7 @@ import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.ws.base.BuildConfig
 import com.ws.support.base.BaseApplication
+import dagger.hilt.android.HiltAndroidApp
 
 
 /**
@@ -15,6 +16,7 @@ import com.ws.support.base.BaseApplication
  * @date 3/9/21 2:08 PM
  * 修改人：ws
  */
+//@HiltAndroidApp
 class StartApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
@@ -33,8 +35,8 @@ class StartApplication : BaseApplication() {
 
         val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(false) // (Optional) Whether to show thread info or not. Default true
-                .methodCount(0) // (Optional) How many method line to show. Default 2
-                .methodOffset(0) // (Optional) Hides internal method calls up to offset. Default 5
+                .methodCount(2) // (Optional) How many method line to show. Default 2
+                .methodOffset(2) // (Optional) Hides internal method calls up to offset. Default 5
                 //.logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
                 .tag("start_library") // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build()

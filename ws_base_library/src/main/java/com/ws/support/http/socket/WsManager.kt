@@ -118,14 +118,14 @@ class WsManager : IWsManager {
         }
         if (mRequest == null) {
             mRequest = Request.Builder()
-                    .url(wsUrl)
+                    .url(wsUrl!!)
                     .build()
         }
-        mOkHttpClient!!.dispatcher().cancelAll()
+        mOkHttpClient!!.dispatcher.cancelAll()
         try {
             mLock!!.lockInterruptibly()
             try {
-                mOkHttpClient!!.newWebSocket(mRequest, mWebSocketListener)
+                mOkHttpClient!!.newWebSocket(mRequest!!, mWebSocketListener)
             } finally {
                 mLock!!.unlock()
             }
@@ -196,7 +196,7 @@ class WsManager : IWsManager {
         }
         cancelReconnect()
         if (mOkHttpClient != null) {
-            mOkHttpClient!!.dispatcher().cancelAll()
+            mOkHttpClient!!.dispatcher.cancelAll()
         }
         if (mWebSocket != null) {
             val isClosed = mWebSocket!!.close(CODE.NORMAL_CLOSE, TIP.NORMAL_CLOSE)

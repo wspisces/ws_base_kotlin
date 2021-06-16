@@ -11,7 +11,9 @@ import android.webkit.MimeTypeMap
 import com.ws.base.BuildConfig
 import com.ws.support.http._ApiUrl
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 import java.net.URLEncoder
 import java.util.*
@@ -80,7 +82,7 @@ object RetrofitManagerKt {
         val mimeType = MimeTypeMap.getSingleton()
                 .getMimeTypeFromExtension(
                         MimeTypeMap.getFileExtensionFromUrl(file.path)) ?: "image/jpeg"
-        val fileBody = RequestBody.create(MediaType.parse(mimeType), file)
+        val fileBody = file.asRequestBody(mimeType.toMediaTypeOrNull())
         // （注意：okhttp3 请求头不能为中文）如果url参数值含有中文、特殊字符时，需要使用 url 编码。
         requestBodyMap["myfiles\"; filename=\"${URLEncoder.encode(file.name, "utf-8")}"] = fileBody
         return requestBodyMap

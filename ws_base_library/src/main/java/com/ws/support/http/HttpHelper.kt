@@ -7,21 +7,13 @@ import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import android.util.Log
-import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.HttpException
-import java.io.EOFException
-import java.net.ConnectException
-import java.net.SocketException
-import java.net.SocketTimeoutException
-import java.net.UnknownHostException
-import javax.net.ssl.SSLException
+
 /**
  * 封装http
  * @author  : curry
@@ -65,8 +57,8 @@ object HttpHelper {
 
     fun createRquestBody(params: Map<*, *>?): RequestBody {
         // JsonUtils.toJson(params)
-        return RequestBody.create(MediaType.parse("application/json; charset=utf-8"),
-                Gson().toJson(params))
+        return Gson().toJson(params)
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
     }
 }
 

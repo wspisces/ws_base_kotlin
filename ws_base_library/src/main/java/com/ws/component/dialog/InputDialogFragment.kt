@@ -81,8 +81,8 @@ class InputDialogFragment private constructor() : DialogFragment() {
         show(manager, "InputDialogFragment")
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         btnCancel.setOnClickListener { listener?.onCancel(this) }
         btnOk.setOnClickListener {
             if (et.text.length > 0) {

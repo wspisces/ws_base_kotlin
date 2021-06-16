@@ -1,10 +1,8 @@
 package com.ws.support.extension
 
-import android.content.Context
 import android.widget.Toast
 import com.ws.support.base.BaseApplication
 import java.io.UnsupportedEncodingException
-import java.lang.StringBuilder
 import java.net.URLEncoder
 import java.util.regex.Pattern
 

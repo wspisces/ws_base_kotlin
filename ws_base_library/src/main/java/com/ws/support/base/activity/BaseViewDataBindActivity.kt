@@ -9,8 +9,6 @@ import android.text.TextUtils
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -18,8 +16,6 @@ import com.ws.base.R
 import com.ws.base.databinding.ActivityDataBaseBinding
 import com.ws.component.dialog.MyProgressDialog
 import com.ws.support.utils.ToastUtils
-import com.ws.support.widget.MyProgressDialogFragment
-import com.ws.support.widget.MyProgressDialogFragment.Companion.newInstance
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

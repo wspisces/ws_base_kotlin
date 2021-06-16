@@ -1,5 +1,6 @@
 package com.ws.support.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -12,9 +13,11 @@ import java.util.*
 /**
  * @author curry
  */
+@SuppressLint("StaticFieldLeak")
 object EasyToastUtil {
     var toast: Toast? = null
     var tv: TextView? = null
+    @SuppressLint("StaticFieldLeak", "InflateParams")
     fun showToast(context: Context?, message: String?, longToast: Boolean) {
         if (null == toast) {
             toast = Toast(context)
@@ -34,12 +37,12 @@ object EasyToastUtil {
 
     private const val DEBUG = false
     fun debug(message: String?) {
-        if (DEBUG) showToast(BaseApplication.Companion.getInstance(), message, false)
+        if (DEBUG) showToast(BaseApplication.getInstance(), message, false)
     }
 
     fun showToast(message: String?) {
         if (StringUtils.isNotEmptyWithNull(message)) {
-            showToast(BaseApplication.Companion.getInstance(), message, false)
+            showToast(BaseApplication.getInstance(), message, false)
         }
     }
 
@@ -52,7 +55,7 @@ object EasyToastUtil {
                 toast!!.cancel()
             }
         }, time)
-        showToast(BaseApplication.Companion.getInstance(), message, false)
+        showToast(BaseApplication.getInstance(), message, false)
     }
 
     fun showToast(context: Context?, message: String?) {

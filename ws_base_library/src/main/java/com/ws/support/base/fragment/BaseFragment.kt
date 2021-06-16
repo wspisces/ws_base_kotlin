@@ -36,6 +36,10 @@ abstract class BaseFragment : Fragment() {
 
     }
 
+    open fun onBackPressed(): Boolean {
+        return false
+    }
+
     /**
      * 初始化Fragment。可通过参数savedInstanceState获取之前保存的值。
      */
@@ -94,12 +98,12 @@ abstract class BaseFragment : Fragment() {
 
     protected fun jumptoActivity(cls: Class<*>?, bundle: Bundle?) {
         gotoActivity(cls, bundle)
-        activity!!.finish()
+        requireActivity().finish()
     }
 
     protected fun jumptoActivity(cls: Class<*>?) {
         gotoActivity(cls)
-        activity!!.finish()
+        requireActivity().finish()
     }
 
     @SuppressLint("CheckResult")

@@ -36,9 +36,9 @@ object ToastUtils {
 
     private fun _show(){
         if (isCenter){
-            toast!!.setGravity(Gravity.CENTER, 0, 0)
+            toast?.setGravity(Gravity.CENTER, 0, 0)
         }
-        toast!!.show()
+        toast?.show()
     }
 
     //显示短时间toast
@@ -46,8 +46,6 @@ object ToastUtils {
         toast = Toasty.warning(BaseApplication.getInstance(), msg, Toasty.LENGTH_SHORT, true)
         _show()
     }
-
-
 
     fun warnL(msg: String) {
         toast = Toasty.warning(BaseApplication.getInstance(), msg, Toasty.LENGTH_LONG, true)

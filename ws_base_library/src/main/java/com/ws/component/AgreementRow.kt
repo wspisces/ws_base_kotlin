@@ -7,8 +7,6 @@ import android.view.LayoutInflater
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
-import androidx.core.text.HtmlCompat.FROM_HTML_OPTION_USE_CSS_COLORS
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener

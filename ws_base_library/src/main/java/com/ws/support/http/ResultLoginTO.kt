@@ -1,10 +1,5 @@
 package com.ws.support.http
 
-import com.ws.support.utils.JsonUtils
-import org.json.JSONArray
-import org.json.JSONException
-import org.json.JSONObject
-
 class ResultLoginTO : ResultTO() {
     var isNewUser = 0
     var token: String? = null

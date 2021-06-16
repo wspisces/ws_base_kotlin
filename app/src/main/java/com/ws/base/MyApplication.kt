@@ -6,6 +6,7 @@ import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import com.ws.support.base.BaseApplication
+import dagger.hilt.android.HiltAndroidApp
 import org.acra.ReportField
 import org.acra.ReportingInteractionMode
 import org.acra.annotation.ReportsCrashes
@@ -15,7 +16,7 @@ import org.acra.annotation.ReportsCrashes
  * 应用App页面
  */
 @ReportsCrashes(
-        mailTo = "wspisces@126.com",
+        mailTo = "wspsices@126.com",
         mode = ReportingInteractionMode.DIALOG,
         customReportContent = [
             ReportField.APP_VERSION_NAME,
@@ -27,6 +28,7 @@ import org.acra.annotation.ReportsCrashes
             ReportField.LOGCAT,
             ReportField.USER_COMMENT],
         )
+@HiltAndroidApp
 class MyApplication : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
@@ -45,8 +47,8 @@ class MyApplication : BaseApplication() {
 
         val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(false) // (Optional) Whether to show thread info or not. Default true
-                .methodCount(0) // (Optional) How many method line to show. Default 2
-                .methodOffset(0) // (Optional) Hides internal method calls up to offset. Default 5
+                .methodCount(2) // (Optional) How many method line to show. Default 2
+                .methodOffset(2) // (Optional) Hides internal method calls up to offset. Default 5
                 //.logStrategy(customLog) // (Optional) Changes the log strategy to print out. Default LogCat
                 .tag("base_library") // (Optional) Global tag for every log. Default PRETTY_LOGGER
                 .build()

@@ -11,13 +11,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.ws.support.utils.ToastUtils
 import com.ws.support.utils.ToastUtils.normal
 import com.ws.support.widget.MyProgressDialogFragment
 import com.ws.support.widget.MyProgressDialogFragment.Companion.newInstance
 import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.android.schedulers.AndroidSchedulers.*
+import io.reactivex.android.schedulers.AndroidSchedulers.mainThread
 import java.util.concurrent.TimeUnit
 
 /**
@@ -72,7 +70,7 @@ abstract class BaseBindingFragment<DB : ViewDataBinding?> : Fragment() {
             }
 
             mDialog!!.show(requireFragmentManager())
-            mDialog!!.setMessage(msg!!)
+            mDialog!!.setMessage(msg)
         } catch (ignored: Exception) {
         }
     }

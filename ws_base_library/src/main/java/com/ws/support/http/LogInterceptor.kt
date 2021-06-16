@@ -1,7 +1,6 @@
 package com.ws.support.http
 
 import android.util.Log
-import com.ws.support.http.LogInterceptor.Logger
 import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.Protocol
@@ -118,12 +117,12 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
         }
         val logBody = level == Level.BODY
         val logHeaders = logBody || level == Level.HEADERS
-        val requestBody = request.body()
+        val requestBody = request.body
         val hasRequestBody = requestBody != null
         //val connection = chain.connection()
         //        Protocol protocol = connection != null ? connection.getProtocol() : Protocol.HTTP_1_1;
         val requestStartMessage = StringBuilder()
-        requestStartMessage.append("--> " + request.method() + ' ' + request.url() + ' ') //+ protocol(protocol)
+        requestStartMessage.append("--> " + request.method + ' ' + request.url + ' ') //+ protocol(protocol)
         if (!logHeaders && hasRequestBody) {
             requestStartMessage.append(" (" + requestBody!!.contentLength() + BYTE_BODY)
         }
@@ -139,9 +138,9 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
                     logger.log("Content-Length: " + requestBody.contentLength())
                 }
             }
-            val headers = request.headers()
+            val headers = request.headers
             var i = 0
-            val count = headers.size()
+            val count = headers.size
             while (i < count) {
                 val name = headers.name(i)
                 // Skip headers from the request body as they are explicitly logged above.
@@ -151,9 +150,9 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
                 i++
             }
             if (!logBody || !hasRequestBody) {
-                logger.log(END + request.method())
-            } else if (bodyEncoded(request.headers())) {
-                logger.log(END + request.method() + " (encoded body omitted)")
+                logger.log(END + request.method)
+            } else if (bodyEncoded(request.headers)) {
+                logger.log(END + request.method + " (encoded body omitted)")
             } else {
                 val buffer = Buffer()
                 requestBody!!.writeTo(buffer)
@@ -162,28 +161,28 @@ class LogInterceptor @JvmOverloads constructor(private val logger: Logger = Logg
                 contentType?.charset(UTF8)
                 logger.log("")
                 logger.log(buffer.readString(charset))
-                logger.log(END + request.method()
+                logger.log(END + request.method
                         + " (" + requestBody.contentLength() + BYTE_BODY)
             }
         }
         val startNs = System.nanoTime()
         val response = chain.proceed(request)
         val tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs)
-        val responseBody = response.body()
-        logger.log("<-- " + response.code() + ' ' + response.message() + ' '
-                + response.request().url() + " (" + tookMs + "ms" + (if (!logHeaders) ", "
+        val responseBody = response.body
+        logger.log("<-- " + response.code + ' ' + response.message + ' '
+                + response.request.url + " (" + tookMs + "ms" + (if (!logHeaders) ", "
                 + responseBody!!.contentLength() + "-byte body" else "") + ')')
         if (logHeaders) {
-            val headers = response.headers()
+            val headers = response.headers
             var i = 0
-            val count = headers.size()
+            val count = headers.size
             while (i < count) {
                 logger.log(headers.name(i) + ": " + headers.value(i))
                 i++
             }
             if (!logBody) { //|| !HttpEngine.hasBody(response)
                 logger.log("<-- END HTTP")
-            } else if (bodyEncoded(response.headers())) {
+            } else if (bodyEncoded(response.headers)) {
                 logger.log("<-- END HTTP (encoded body omitted)")
             } else {
                 val source = responseBody!!.source()

@@ -15,6 +15,7 @@ import java.util.*
  * @auth 方毅超
  * @time 2017/12/8 14:41
  */
+@Suppress("DEPRECATION")
 class FileManager {
     // 取得SD卡文件路径
     // 获取单个数据块的大小(Byte)
@@ -57,8 +58,8 @@ class FileManager {
                 + File.separator)
         const val ACTION_DEL_ALL_IMAGE_CACHE = "com.citic21.user_delImageCache"
         const val CODE_ENCODING = "utf-8"
-        fun getRootPath(appContext: Context): String? {
-            var rootPath: String? = null
+        fun getRootPath(appContext: Context): String {
+            val rootPath: String
             rootPath = if (checkMounted()) {
                 rootPathOnSdcard
             } else {
@@ -81,7 +82,7 @@ class FileManager {
         // 判断sd卡是否存在
         val sdcardPath: String
             get() {
-                var sdDir: File? = null
+                var sdDir: File?
                 val sdCardExist = checkMounted() // 判断sd卡是否存在
                 if (sdCardExist) {
                     sdDir = Environment.getExternalStorageDirectory() // 获取跟目录

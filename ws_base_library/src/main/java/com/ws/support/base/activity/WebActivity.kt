@@ -16,6 +16,7 @@ import com.ws.support.utils.StringUtils
 /**
  * web界面
  */
+@Suppress("DEPRECATION")
 class WebActivity private constructor(override val toolbarTite: String? = "网页", override val layoutId: Int = R.layout.activity_web) : BaseViewBindActivity() {
 
     lateinit var binding: ActivityWebBinding

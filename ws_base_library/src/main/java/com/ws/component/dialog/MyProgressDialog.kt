@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.TextUtils
 import android.util.DisplayMetrics
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDialog
@@ -27,6 +28,11 @@ class MyProgressDialog private constructor(context: Context, theme: Int) : AppCo
         return dialog
     }
 
+    override fun show() {
+        super.show()
+        setWidth(this,context)
+
+    }
     companion object {
         private var dialog: MyProgressDialog? = null
         fun createProblemDialog(context: Context, message: String?): MyProgressDialog? {
@@ -48,7 +54,8 @@ class MyProgressDialog private constructor(context: Context, theme: Int) : AppCo
                 it.defaultDisplay.getMetrics(dm)
             }
             val params = dialog.window!!.attributes
-            params.width = (dm.widthPixels * 0.6).toInt()
+            params.width = (dm.widthPixels * 0.5).toInt()
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT
             //params.height = (int) (dm.widthPixels * 0.9);
             dialog.window!!.attributes = params
             dialog.window!!.setBackgroundDrawableResource(android.R.color.transparent)

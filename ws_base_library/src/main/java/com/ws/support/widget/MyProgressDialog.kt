@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.widget.ContentLoadingProgressBar
 import com.ws.base.R
-import java.util.*
 
 /**
  * 描述信息

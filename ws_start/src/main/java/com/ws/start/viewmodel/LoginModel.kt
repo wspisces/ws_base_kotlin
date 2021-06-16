@@ -10,7 +10,10 @@ import com.ws.support.extension.LoadState
 import com.ws.support.http_coroutines.RetrofitFactory
 import com.ws.support.http_coroutines.createRquestBody
 import com.ws.support.utils.StringUtils
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 /**
@@ -20,7 +23,7 @@ import kotlinx.coroutines.launch
  * 修改人：ws
  */
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class LoginModel : BaseViewModel<BaseRepository>() {
+class LoginModel @Inject constructor(): BaseViewModel<BaseRepository>() {
 
     val isRememberAccount: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>().apply { value = true }
@@ -34,10 +37,10 @@ class LoginModel : BaseViewModel<BaseRepository>() {
     val isAgreement: MutableLiveData<Boolean> by lazy {
         MutableLiveData<Boolean>().apply { value = true }
     }
-
-//    val token: MutableLiveData<String> by lazy {
-//        MutableLiveData<String>().apply { value = "" }
-//    }
+    //var token = MutableLiveData<String>()
+    val token: MutableLiveData<String> by lazy {
+        MutableLiveData<String>().apply { value = "" }
+    }
 
     var account = ""
         set(value) {
@@ -78,7 +81,6 @@ class LoginModel : BaseViewModel<BaseRepository>() {
         params["uuid"] = ""
         loadState.postValue(LoadState.Loading("正在登录"))
         viewModelScope.launch {//自动解绑
-            //isLoading.postValue(true)
             try {
                 /*dataConvert扩展函数可以很方便的解析出我们想要的数据  接口很多的情况下下可以节省不少无用代码*/
                 val data = RetrofitFactory.instance.getService(StartApi::class.java)
@@ -92,11 +94,9 @@ class LoginModel : BaseViewModel<BaseRepository>() {
                 loadState.postValue(LoadState.Fail(e.localizedMessage))
                 Log.i("请求失败", "${e.message}")
             }
-            //isLoading.postValue(false)
         }
     }
 
-    var token = MutableLiveData<String>()
 
 /*    //demo
     var fictions = MutableLiveData<List<Fiction>>()

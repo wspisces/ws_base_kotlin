@@ -1,5 +1,8 @@
+@file:Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+
 package com.ws.support.utils
 
+import android.annotation.SuppressLint
 import java.text.DateFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -116,7 +119,7 @@ object DateUtils {
      * @param format  格式化字符串，如："yyyy-MM-dd HH:mm:ss"
      * @return Date Date类型日期时间
      */
-    fun getDateByFormat(strDate: String?, format: String?): Date? {
+    fun getDateByFormat(strDate: String, format: String): Date? {
         val mSimpleDateFormat = SimpleDateFormat(format, Locale.getDefault())
         var date: Date? = null
         try {
@@ -150,11 +153,7 @@ object DateUtils {
     fun matchDateIsToday(time: Long, format: String?): Boolean {
         val todayString = getCurrentDateByFormat(format)
         val selectString = formatTimeByMillisecond(time, format)
-        return if (todayString == null || selectString == null) {
-            false
-        } else {
-            todayString == selectString
-        }
+        return todayString == selectString
     }
 
     /**
@@ -329,8 +328,9 @@ object DateUtils {
      * @param format 格式化字符串，如："yyyy-MM-dd HH:mm:ss"
      * @return String String类型的当前日期时间
      */
-    fun getCurrentDateByFormat(format: String?): String? {
-        var curDateTime: String? = null
+    @SuppressLint("SimpleDateFormat")
+    fun getCurrentDateByFormat(format: String?): String {
+        var curDateTime = ""
         try {
             val mSimpleDateFormat = SimpleDateFormat(format)
             val c: Calendar = GregorianCalendar()

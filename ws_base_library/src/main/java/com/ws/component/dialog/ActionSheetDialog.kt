@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Context
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.*
 import androidx.core.content.ContextCompat
 import com.ws.base.R

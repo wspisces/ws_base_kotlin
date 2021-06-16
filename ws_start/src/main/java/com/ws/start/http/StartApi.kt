@@ -1,16 +1,12 @@
 package com.ws.start.http
 
 import com.ws.support.http.LoginResult
-import com.ws.support.http.ResultLoginTO
-import com.ws.support.http.ResultTO
 import com.ws.support.http_coroutines.BaseResp
 import com.ws.support.http_coroutines.Fiction
-import io.reactivex.Observable
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.QueryMap
 
 
 /**

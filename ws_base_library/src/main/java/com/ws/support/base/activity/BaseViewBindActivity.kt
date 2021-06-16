@@ -10,8 +10,6 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.ViewDataBinding
-import androidx.viewbinding.ViewBinding
 import com.ws.base.R
 import com.ws.base.databinding.ActivityBaseBinding
 import com.ws.support.widget.MyProgressDialogFragment

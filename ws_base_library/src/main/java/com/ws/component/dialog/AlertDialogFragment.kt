@@ -26,7 +26,7 @@ class AlertDialogFragment private constructor() : DialogFragment() {
     var title = ""
     var listener: OnAlertDialogFragmentListener? = null
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = Dialog(activity!!, R.style.Dialog_Fullscreen_Bottom)
+        val dialog = Dialog(requireActivity(), R.style.Dialog_Fullscreen_Bottom)
         dialog.setCanceledOnTouchOutside(true)
         //设置actionbar的隐藏
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -58,14 +58,14 @@ class AlertDialogFragment private constructor() : DialogFragment() {
         return view
     }
 
-    fun show(manager: FragmentManager) {
-        show(manager, "InputDialogFragment")
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         btnCancel.setOnClickListener { dismiss() }
         btnOk.setOnClickListener { listener?.onCommit(this) }
+    }
+
+    fun show(manager: FragmentManager) {
+        show(manager, "InputDialogFragment")
     }
 
     interface OnAlertDialogFragmentListener {

@@ -254,6 +254,8 @@ class AppUtils private constructor() {
             val kbsize = size / 1024f
             return formater.format(kbsize.toDouble()) + "KB"
         }
+
+
     }
 
     init {

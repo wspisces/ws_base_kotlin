@@ -1,14 +1,12 @@
 package com.ws.support.http
 
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.view.Gravity
 import com.ws.base.R
 import com.ws.support.widget.MyProgressDialog
-import java.util.*
 
 /**
  * Created by curry on 2018/6/21.

@@ -7,14 +7,10 @@ package com.ws.support.httpkt
  * @date 1/22/21 9:08 AM
  * 修改人：ws
  */
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.orhanobut.logger.Logger
 import com.ws.base.BuildConfig
 import com.ws.support.http.LogInterceptor
-import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit

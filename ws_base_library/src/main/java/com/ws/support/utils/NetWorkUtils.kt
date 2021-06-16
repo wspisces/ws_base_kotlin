@@ -40,7 +40,8 @@ object NetWorkUtils {
      */
     fun getNetworkType(context: Context): Int {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        @SuppressLint("MissingPermission") val networkInfo = connectivityManager?.activeNetworkInfo
+        @SuppressLint("MissingPermission")
+        val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo?.type ?: -1
     }
 
@@ -78,9 +79,9 @@ object NetWorkUtils {
      * @param context
      * @return
      */
+    @SuppressLint("MissingPermission")
     private fun isFastMobileNetwork(context: Context): Boolean {
         val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-                ?: return false
         return when (telephonyManager.networkType) {
             TelephonyManager.NETWORK_TYPE_1xRTT -> false
             TelephonyManager.NETWORK_TYPE_CDMA -> false

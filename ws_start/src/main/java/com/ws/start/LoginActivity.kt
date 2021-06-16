@@ -2,9 +2,8 @@ package com.ws.start
 
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
-import androidx.activity.viewModels
+import android.view.inputmethod.EditorInfo.IME_ACTION_GO
 import androidx.lifecycle.Observer
-import com.google.gson.Gson
 import com.orhanobut.logger.Logger
 import com.ws.base.databinding.ActivityDataBaseBinding
 import com.ws.component.OnAgreementRowClickListener
@@ -14,15 +13,23 @@ import com.ws.support.base.activity.WebActivity
 import com.ws.support.extension.LoadState
 import com.ws.support.extension.clickWithTrigger
 import com.ws.support.utils.ToastUtils
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import com.ws.support.base.activity.BaseViewDataBindActivity as ActivityBaseViewDataBindActivity
 
 /**
  * 登录
  */
-class LoginActivity(override val toolbarTite: String? = "登录", override val layoutId: Int = R.layout.activity_login) : ActivityBaseViewDataBindActivity<ActivityLoginBinding>() {
+@AndroidEntryPoint
+class LoginActivity(
+    override val toolbarTite: String? = "登录",
+    override val layoutId: Int = R.layout.activity_login
+) : ActivityBaseViewDataBindActivity<ActivityLoginBinding>() {
 
     lateinit var binding: ActivityLoginBinding
-    val loginModel: LoginModel by viewModels()
+
+    @Inject
+    lateinit var loginModel: LoginModel
     override fun initView(bindView: ActivityDataBaseBinding, binding: ActivityLoginBinding?) {
         this.binding = binding!!
         this.binding.agreement.setListener(onAgreementRowClickListener)
@@ -76,11 +83,18 @@ class LoginActivity(override val toolbarTite: String? = "登录", override val l
             loginModel.login()
         }
         binding.formPwd.getEt().setOnEditorActionListener { _, i, _ ->
-            if (IME_ACTION_DONE == i) {
+            if (IME_ACTION_GO == i) {
                 loginModel.login()
+                hideKeyBoard();
                 return@setOnEditorActionListener false
             }
             return@setOnEditorActionListener true
         }
+        loginModel.isRememberAccount.observe(this, {
+            loginModel.isAutoLogin.value = it
+        })
+        loginModel.isAgreement.observe(this, {
+            binding.btnLogin.isEnabled = it
+        })
     }
 }
