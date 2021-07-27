@@ -10,8 +10,7 @@ import com.ws.support.extension.LoadState
 import com.ws.support.http_coroutines.RetrofitFactory
 import com.ws.support.http_coroutines.createRquestBody
 import com.ws.support.utils.StringUtils
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

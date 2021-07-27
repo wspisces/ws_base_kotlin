@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:descendantFocusability="beforeDescendants">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,24 +32,30 @@
         app:layout_constraintTop_toTopOf="parent">
 
 
-        <EditText
+        <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_content"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/cn_len_one"
             android:layout_marginEnd="@dimen/cn_len_one"
             android:layout_weight="1"
             android:background="@null"
             android:gravity="right|center_vertical"
+            android:maxLines="1"
             android:singleLine="true"
             android:textColor="@color/et_color"
             android:textSize="@dimen/text_size_normal"
+            app:autoSizeMaxTextSize="16sp"
+            app:autoSizeMinTextSize="3sp"
+            app:autoSizeStepGranularity="1sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/iv_arrow"
             app:layout_constraintStart_toEndOf="@+id/tv_title"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +66,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@mipmap/head_choose_default" />
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_arrow"
             android:layout_width="@dimen/cn_len_one"
             android:layout_height="@dimen/cn_len_two"
@@ -69,7 +76,7 @@
             app:srcCompat="@mipmap/right_arrow_icon" />
     </LinearLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_action"
         android:layout_width="0dp"
         android:layout_height="0dp"

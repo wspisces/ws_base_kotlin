@@ -1,12 +1,12 @@
 package com.ws.start
 
 import android.os.Bundle
-import android.view.inputmethod.EditorInfo.IME_ACTION_DONE
 import android.view.inputmethod.EditorInfo.IME_ACTION_GO
 import androidx.lifecycle.Observer
 import com.orhanobut.logger.Logger
 import com.ws.base.databinding.ActivityDataBaseBinding
 import com.ws.component.OnAgreementRowClickListener
+import com.ws.start.databinding.ActivityLogin2Binding
 import com.ws.start.databinding.ActivityLoginBinding
 import com.ws.start.viewmodel.LoginModel
 import com.ws.support.base.activity.WebActivity
@@ -23,14 +23,14 @@ import com.ws.support.base.activity.BaseViewDataBindActivity as ActivityBaseView
 @AndroidEntryPoint
 class LoginActivity(
     override val toolbarTite: String? = "登录",
-    override val layoutId: Int = R.layout.activity_login
-) : ActivityBaseViewDataBindActivity<ActivityLoginBinding>() {
+    override val layoutId: Int = R.layout.activity_login2
+) : ActivityBaseViewDataBindActivity<ActivityLogin2Binding>() {
 
-    lateinit var binding: ActivityLoginBinding
+    lateinit var binding: ActivityLogin2Binding
 
     @Inject
     lateinit var loginModel: LoginModel
-    override fun initView(bindView: ActivityDataBaseBinding, binding: ActivityLoginBinding?) {
+    override fun initView(bindView: ActivityDataBaseBinding, binding: ActivityLogin2Binding?) {
         this.binding = binding!!
         this.binding.agreement.setListener(onAgreementRowClickListener)
         this.binding.agreement.setContent("选中即表示同意<font color=\"blue\">隐私协议</font>")
@@ -82,7 +82,7 @@ class LoginActivity(
         binding.btnLogin.clickWithTrigger {
             loginModel.login()
         }
-        binding.formPwd.getEt().setOnEditorActionListener { _, i, _ ->
+        binding.etPwd.setOnEditorActionListener { _, i, _ ->
             if (IME_ACTION_GO == i) {
                 loginModel.login()
                 hideKeyBoard();
